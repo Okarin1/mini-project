@@ -31,15 +31,16 @@
 }
 
 .content{
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
   padding: 20rpx 10rpx;
   text-align:justify;
   font-size: 30rpx;
   overflow: hidden;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+  max-height: 100rpx;
+  text-overflow: ellipsis;  /* 超出部分省略号 */
+  word-break: break-word;  /* break-all(允许在单词内换行。) */		
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 3; /** 显示的行数 **/
 }
 
 .post-type{

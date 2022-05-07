@@ -6,7 +6,6 @@
   border-radius: 12rpx;
   overflow: hidden;
   margin-bottom: 20rpx;
-  width: 355px;
   box-shadow: 0 16px 40px  rgba(146, 143, 143, 0.2);
 }
 
