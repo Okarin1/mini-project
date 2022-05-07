@@ -35,3 +35,7 @@ export function getPostByType(page,type,limit = 10) {
 export function thumbPost(postsId,userId) {
   return myRequest.post("/api/giao/user/poststhumbs/thumbsPosts", {postsId,userId})
 }
+
+export function checkThumbsPosts(postsId,userId) {
+  return myRequest.post("/api/giao/user/poststhumbs/checkThumbsPosts", {postsId,userId})
+}
