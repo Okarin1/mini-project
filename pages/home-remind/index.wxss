@@ -1,1 +1,27 @@
 /* pages/home-remind/index.wxss */
+page{
+  padding: 0 20rpx;
+}
+.notice-list{
+  margin-top: 30rpx;
+}
+.un-login{
+  height: 200rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 15rpx;
+  margin: 50rpx 0;
+}
+
+.un-login button{
+  width: 500rpx;
+}
+
+.info{
+  color: #999;
+  font-size: 25rpx;
+}

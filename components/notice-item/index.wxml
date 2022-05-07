@@ -1,0 +1,12 @@
+<!--components/notice-item/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view>
+  <view class="user" >
+    <image class="user-image"src="{{format.padHeadImgUrl(item.headportrait)}}"></image>
+    <view>
+      <view class="user-name">{{item.nickname}}</view>
+    <view class="post-time">{{format.completeTime(item.createDate)}}</view>
+    </view>
+  </view>
+  <view class="content">{{item.typee}}了你的帖子</view>
+</view>
