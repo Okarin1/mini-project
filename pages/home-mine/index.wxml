@@ -1,0 +1,44 @@
+<!--pages/home-mine/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+
+<!-- 未登录提示登录 -->
+<view class="un-login" wx:if="{{!userInfo.id}}">
+  <view>
+    <van-button color="#007acc" bind:click="handleLoginClick" round>点击登录</van-button>
+  </view>
+  <view class="info">
+    <text>注册登录解锁更多精彩</text>
+  </view>
+</view>
+
+<!-- 个人信息 -->
+
+<view wx:if="{{userInfo.id}}">
+  <view class="user-info" bindtap="handleUserInfo">
+    <image wx:if="{{userInfo.headPortrait}}" class="user-head" src="{{format.padHeadImgUrl(userInfo.headPortrait)}}"></image>
+    <view class="user-name">{{userInfo.nickname}}</view>
+    <view class="arrow">
+      <i class="arrow-right"></i>
+    </view>
+  </view>
+  <view class="content">
+    <view class="info-text" bindtap="showMyPosts">
+      <view class="num" >{{postList.length}}</view>
+      <view>帖子</view>
+    </view>
+    <view class="info-text">
+      <view class="num">{{userInfo.age}}</view>
+      <view>关注</view>
+    </view>
+    <view class="info-text">
+      <view class="num">{{userInfo.age}}</view>
+      <view>粉丝</view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="un-login" wx:if="{{userInfo.id}}">
+  <van-button color="#007acc" bind:click="removeLoginClick" round>退出登录</van-button>
+</view>

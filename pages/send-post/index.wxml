@@ -1,0 +1,31 @@
+<!--pages/send-post/index.wxml-->
+<van-cell-group>
+  <van-cell title="发布新动态">
+    <view slot="right-icon">
+      <van-button disabled="{{!message}}" color="#007acc" size="small" round bind:click="postClick">发布</van-button>
+    </view>
+  </van-cell>
+
+  <van-cell value="选择一个话题" center>
+    <view slot="title">
+      <van-dropdown-menu active-color="#1989fa">
+        <van-dropdown-item value="{{ value }}" options="{{ option }}"  bind:change="tagChange" />
+      </van-dropdown-menu>
+    </view>
+  </van-cell>
+
+  <van-field
+    model:value="{{ message }}"
+    type="textarea"
+    placeholder="分享你的想法..."
+    autosize
+    size = "large"
+    border="{{ false }}"
+    maxlength = "{{1000}}"
+    show-word-limit
+    input-class="textarea"
+  />
+
+
+
+</van-cell-group>

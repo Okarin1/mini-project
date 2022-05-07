@@ -1,0 +1,29 @@
+<!--pages/user-edit/index.wxml-->
+<van-cell-group>
+
+  <van-cell title="编辑个人信息">
+    <view slot="right-icon">
+      <van-button color="#007acc" size="small" round bind:click="saveClick">保存</van-button>
+    </view>
+  </van-cell>
+
+  <van-field
+  wx:if="{{ userInfo.id }}"
+  model:value="{{ nickname }}"
+    label="昵称"
+    placeholder="{{ nickname }}"
+    border="{{ false }}"
+    bind:change="onChange"
+  />
+  <van-field
+  wx:if="{{ userInfo.id }}"
+  model:value="{{ autograph }}"
+    label="签名"
+    type="textarea"
+    placeholder="{{ autograph }}"
+    autosize
+    maxlength = "{{100}}"
+    show-word-limit
+    border="{{ false }}"
+  />
+</van-cell-group>

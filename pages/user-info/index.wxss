@@ -1,0 +1,40 @@
+/* pages/user-info/index.wxss */
+.user-info{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 40rpx;
+  background-color: #007acc;
+  color: #fff;
+}
+
+.user-info .image{  
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+.user-info .name{
+  margin-top: 20rpx;
+  font-size: 50rpx;
+  font-weight: 600;
+}
+.user-info .info{
+  margin: 20rpx 0 40rpx 0;
+}
+
+.post-list{
+  margin-top: -40rpx;
+  background-color: #f6f6f6;
+  border-radius: 40rpx;
+  z-index: 5;
+  padding: 20rpx;
+}
+.none-list{
+  margin: 200rpx 50rpx;
+}
+
+.edit-button{
+  position: absolute;
+  right: 80rpx;
+  top: 80rpx;
+  z-index: 5;
+}

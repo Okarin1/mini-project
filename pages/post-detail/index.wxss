@@ -1,0 +1,38 @@
+/* pages/post-detail/index.wxss */
+.item{
+  min-height: 400rpx;
+  background-color: #fff;
+  margin: 25rpx 0;
+  border-radius: 15rpx;
+  display: flex;
+  flex-flow: column;
+  padding: 20rpx ;
+}
+.user{
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%
+}
+.user-name{
+  margin-left: 20rpx;
+  font-weight: 600;
+}
+
+.post-time{
+  margin-left: 20rpx;
+  font-size: small;
+  color: #888;
+}
+
+.content{
+  padding: 30rpx 10rpx;
+  text-align:justify;
+  font-size: 30rpx;
+  overflow: hidden;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+}

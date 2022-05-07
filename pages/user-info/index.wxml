@@ -1,0 +1,22 @@
+<!--pages/user-info/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+
+<view wx:if="{{user}}" class="user-info">
+<image wx:if="{{user.headPortrait}}" class="image" src="{{format.padHeadImgUrl(user.headPortrait)}}"></image>
+<view class="name">{{user.nickname}}</view>
+<view  class="info"><text wx:if="{{user.autograph}}">{{user.autograph}}</text></view>
+</view>
+
+<view class="edit-button" wx:if="{{isUser}}">
+  <van-button bind:click="editInfoClick" icon="edit" type="info" round >编辑资料</van-button>
+</view>
+
+<view class="post-list">
+  <block wx:for="{{userPostList}}" wx:key="postsId"  wx:if="{{userPostList}}">
+    <post-item item="{{item}}" bind:typeClick="showPostType" data-postinfo="{{item}}"></post-item>
+    <hr/>
+  </block>
+  <view  wx:if="{{!userPostList}}" class="none-list">该用户似乎很懒，什么帖子都没有</view>
+</view>
+
+

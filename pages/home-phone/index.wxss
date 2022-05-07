@@ -1,0 +1,12 @@
+/* pages/home-phone/index.wxss */
+page{
+  padding: 0 20rpx;
+}
+.ranking{
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 15rpx;
+}
+.ranking-item:nth-child(-n+3){
+  color: red !important;
+}

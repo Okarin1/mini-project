@@ -1,0 +1,19 @@
+/* pages/my-post/index.wxss */
+page{
+  padding: 0 20rpx;
+}
+.post-list{
+  background-color: #f6f6f6;
+  border-radius: 40rpx;
+  z-index: 5;
+}
+.none-list{
+  margin: 200rpx 50rpx;
+}
+
+.edit-button{
+  position: absolute;
+  right: 80rpx;
+  top: 80rpx;
+  z-index: 5;
+}

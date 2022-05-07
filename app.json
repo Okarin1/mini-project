@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/home-main/index",
+    "pages/home-phone/index",
+    "pages/home-remind/index",
+    "pages/home-mine/index",
+    "pages/login/index",
+    "pages/user-info/index",
+    "pages/send-post/index",
+    "pages/user-edit/index",
+    "pages/post-detail/index",
+    "pages/post-type/index",
+    "pages/my-post/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fafafa",
+    "navigationBarTitleText": "酷玩论坛",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#007acc",
+    "list": [
+      {
+        "pagePath": "pages/home-main/index",
+        "text": "首页",
+        "iconPath": "assets/images/tabbar/home_normal.png",
+        "selectedIconPath": "assets/images/tabbar/home_active.png"
+      },
+      {
+        "pagePath": "pages/home-phone/index",
+        "text": "数码",
+        "iconPath": "assets/images/tabbar/phone_normal.png",
+        "selectedIconPath": "assets/images/tabbar/phone_active.png"
+      },
+      {
+        "pagePath": "pages/home-remind/index",
+        "text": "通知",
+        "iconPath": "assets/images/tabbar/remind_normal.png",
+        "selectedIconPath": "assets/images/tabbar/remind_active.png"
+      },
+      {
+        "pagePath": "pages/home-mine/index",
+        "text": "我",
+        "iconPath": "assets/images/tabbar/mine_normal.png",
+        "selectedIconPath": "assets/images/tabbar/mine_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

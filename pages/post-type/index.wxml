@@ -1,0 +1,13 @@
+<!--pages/post-type/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view wx:if="{{postList}}" class="type-info">
+  <view class="name">{{format.showPostType(type)}}</view>
+  <view class="info"><text wx:if="{{total}}">{{total}}讨论</text></view>
+</view>
+<view wx:if="{{postList}}" class="post-list">
+  <block wx:for="{{postList}}" wx:key="postsId">
+    <post-item item="{{item}}" bind:userClick="showUserInfo" data-postinfo="{{item}}" isTypePage></post-item>
+    <van-divider />
+  </block>
+  <view  wx:if="{{!postList}}" class="none-list">什么帖子都没有</view>
+</view>

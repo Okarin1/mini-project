@@ -1,0 +1,15 @@
+/* pages/send-post/index.wxss */
+.van-dropdown-menu{
+  box-shadow: none !important;
+  height: 50rpx !important;
+}
+.van-dropdown-menu__item{
+  flex: none !important;
+}
+.van-dropdown-menu__title{
+  padding:0 16rpx 0 0 !important
+} 
+
+.textarea{
+  min-height: 400rpx !important;
+}

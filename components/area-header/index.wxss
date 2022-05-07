@@ -1,0 +1,42 @@
+/* components/area-header/index.wxss */
+.header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  
+}
+.header .title{
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.header .right{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #777;
+}
+
+.arrow-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  color: #888;
+}
+
+.arrow-right::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 16rpx;
+  height: 16rpx;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  transform: rotate(-45deg);
+  right: 12rpx;
+  top: 8rpx;
+}

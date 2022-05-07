@@ -1,0 +1,16 @@
+<!--components/brand-list-item/index.wxml-->
+<view class="item">
+  <view class="content">
+    <view class="content-title">{{item.brand}}</view>
+    <view class="content-list">
+      <block wx:for="{{3}}" wx:for-item="index" wx:key="*this">
+        <view class="content-list-item">
+          <text>{{index+1}}. {{item.phoneList[index].spuName}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="album">
+    <image class="image" src="{{item.coverImgUrl}}" mode="aspectFill"></image>
+  </view>
+</view>

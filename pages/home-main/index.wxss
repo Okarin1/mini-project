@@ -1,0 +1,48 @@
+/* pages/home-main/index.wxss */
+page{
+  padding: 0 20rpx;
+}
+
+.van-search{
+  padding: 10px 0 !important;
+}
+.van-search__content{
+  background-color: #fff !important;
+}
+
+.swiper{
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.swiper-item{
+  display: flex;
+
+}
+.swiper-item .swiper-image{
+  width: 100%;
+}
+
+.post-button{
+  position: fixed;
+  right: 80rpx;
+  bottom: 80rpx;
+  z-index: 5;
+}
+
+.post-button button{
+  width: 94rpx;
+}
+.guide{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20rpx;
+  justify-content: space-around;
+  padding: 20rpx;
+}
+.guide-button button{
+  margin: 0 10rpx;
+}

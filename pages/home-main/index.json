@@ -1,0 +1,12 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f6f6f6",
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "area-header":"../../components/area-header/index",
+    "post-item":"../../components/post-item/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+}

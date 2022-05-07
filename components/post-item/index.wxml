@@ -1,0 +1,20 @@
+<!--components/post-item/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view class="item" bindtap="handlePostClick">
+  <view class="user" >
+    <image class="user-image" catchtap="handleUserClick" src="{{format.padHeadImgUrl(item.headPortrait)}}"></image>
+    <view>
+      <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
+    <view class="post-time">{{format.completeTime(item.createDate)}}</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="post"><text user-select>{{item.article}}</text></view>
+  </view>
+ <text class="post-type" catchtap="handleTypeClick" wx:if="{{!isTypePage && item.type}}">{{format.showPostType(item.type)}}</text>
+ <view class="thumbs-bar">
+  <van-button icon="good-job-o" color="{{ isThumbed && thumbColor}}" plain catchtap="handleThumbClick">{{thumbNum}}</van-button>
+  <van-button icon="comment-o" plain>{{0}}</van-button>
+  <van-button icon="share-o"plain />
+</view>
+</view>

@@ -1,0 +1,85 @@
+/* pages/home-mine/index.wxss */
+page{
+  padding: 0 20rpx;
+}
+.un-login{
+  height: 200rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 15rpx;
+  margin: 50rpx 0;
+}
+
+.un-login button{
+  width: 500rpx;
+}
+
+.info{
+  color: #999;
+  font-size: 25rpx;
+}
+
+.user-info{
+  margin: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.user-head {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%
+}
+.user-name{
+  margin-left: 80rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  flex: 1;
+}
+
+.arrow-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  color: #888;
+}
+
+.arrow-right::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 18rpx;
+  height: 18rpx;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(-45deg);
+  right: 20rpx;
+  top: 8rpx;
+}
+
+.content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 15rpx;
+  margin: 50rpx 0;
+}
+.info-text{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.num{
+  font-size: 40rpx;
+  font-weight: 600;
+}

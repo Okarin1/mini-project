@@ -1,0 +1,8 @@
+<!--components/area-header/index.wxml-->
+<view class="header">
+  <view class="title">{{title}}</view>
+  <view class="right" wx:if="{{showRight}}" bindtap="handleRightClick">
+    <text>{{rightText}}</text>
+    <i class="arrow-right"></i>
+  </view>
+</view>

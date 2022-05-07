@@ -1,0 +1,20 @@
+<!--pages/login/index.wxml-->
+<view class="login">
+  <view class="text">酷玩账号登录</view>
+  <van-cell-group>
+  <van-field
+    model:value="{{ username }}"
+    placeholder="请输入用户名"
+    :rules="[{ required: true, message: '请填写用户名' }]"
+  />
+  <van-field
+  model:value="{{ password }}"
+    type="password"
+    placeholder="请输入密码"
+  />
+</van-cell-group>
+<view class="button">
+  <van-button color="#007acc" round bind:click="loginClick">登录</van-button>
+</view>
+
+</view>

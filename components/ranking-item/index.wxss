@@ -1,0 +1,51 @@
+/* components/ranking-item/index.wxss */
+.item {
+  display: flex;
+  padding: 16rpx 0;
+  align-items: center;
+}
+.index{
+  margin: 0 25rpx;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.content {
+  margin-left: 16rpx;
+  flex: 1;
+}
+
+.content .name {
+  font-size: 32rpx;
+  color: #555;
+}
+
+.content .source {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+
+.arrow-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  color: #888;
+}
+
+.arrow-right::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 18rpx;
+  height: 18rpx;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(-45deg);
+  right: 20rpx;
+  top: 8rpx;
+}

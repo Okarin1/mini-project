@@ -1,0 +1,29 @@
+/* pages/post-type/index.wxss */
+.type-info{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 40rpx;
+  background-color: #007acc;
+  color: #fff;
+}
+
+
+.type-info .name{
+  margin-top: 20rpx;
+  font-size: 50rpx;
+  font-weight: 600;
+}
+.type-info .info{
+  margin: 20rpx 0 40rpx 0;
+}
+
+.post-list{
+  margin-top: -40rpx;
+  background-color: #fff;
+  border-radius: 40rpx;
+  z-index: 5;
+  padding: 20rpx;
+}
+.none-list{
+  margin: 200rpx 50rpx;
+}
