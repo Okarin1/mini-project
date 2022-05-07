@@ -18,5 +18,4 @@
 <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">
   <van-tab title="赞 {{postInfo.thumbs}}"></van-tab>
   <van-tab title="评论 0"></van-tab>
-  <van-tab title="转发 0"></van-tab>
 </van-tabs>

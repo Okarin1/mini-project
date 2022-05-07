@@ -13,7 +13,7 @@
 
 <view class="post-list">
   <block wx:for="{{userPostList}}" wx:key="postsId"  wx:if="{{userPostList}}">
-    <post-item item="{{item}}" bind:typeClick="showPostType" data-postinfo="{{item}}"></post-item>
+    <post-item item="{{item}}"  userInfo="{{userInfo}}"></post-item>
     <hr/>
   </block>
   <view  wx:if="{{!userPostList}}" class="none-list">该用户似乎很懒，什么帖子都没有</view>

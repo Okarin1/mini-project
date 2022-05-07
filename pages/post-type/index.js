@@ -2,6 +2,9 @@
 import {
   getPostByType
 } from "../../service/api_home"
+import {
+  userStore,
+} from '../../store/index'
 Page({
 
   /**
@@ -9,6 +12,7 @@ Page({
    */
   data: {
     postList:[],
+    userInfo: {},
     hasMore: true,
     isTypePage:true,
     total:0,
@@ -19,17 +23,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    userStore.onState("userInfo", this.getUserHandler())
     let type = options.type
     this.setData({
       type:type
     })
     this.getPostList(1,type)
-  },
-  showUserInfo(event){
-    let username = event.target.dataset.postinfo.username
-    wx.navigateTo({
-      url: '/pages/user-info/index?username=' + username
-    })
   },
 
 
@@ -57,6 +56,16 @@ Page({
       }
     }catch(error){
       console.log(error)
+    }
+  },
+
+  getUserHandler() {
+    return (res) => {
+      if (res) {
+        this.setData({
+          userInfo: res
+        })
+      }
     }
   },
   /**

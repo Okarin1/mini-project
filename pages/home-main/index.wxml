@@ -23,6 +23,6 @@
 <view>
   <area-header title="头条推荐"  showRight="{{false}}"></area-header>
   <block wx:for="{{recommendPostList}}" wx:key="postsId">
-    <post-item item="{{item}}" userInfo="{{userInfo}}" bind:userClick="showUserInfo" bind:postClick="showPostDetail" data-postinfo="{{item}}" bind:typeClick="showPostType"></post-item>
+    <post-item item="{{item}}" userInfo="{{userInfo}}"></post-item>
   </block>
 </view>

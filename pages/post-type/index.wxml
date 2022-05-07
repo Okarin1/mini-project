@@ -6,7 +6,7 @@
 </view>
 <view wx:if="{{postList}}" class="post-list">
   <block wx:for="{{postList}}" wx:key="postsId">
-    <post-item item="{{item}}" bind:userClick="showUserInfo" data-postinfo="{{item}}" isTypePage></post-item>
+    <post-item item="{{item}}" userInfo="{{userInfo}}" isTypePage></post-item>
     <van-divider />
   </block>
   <view  wx:if="{{!postList}}" class="none-list">什么帖子都没有</view>

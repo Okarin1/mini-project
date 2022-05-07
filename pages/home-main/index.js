@@ -71,7 +71,7 @@ Page({
 
   getUserHandler() {
     return (res) => {
-      if (res) {
+      if (res.id) {
         this.setData({
           userInfo: res
         })
@@ -79,24 +79,7 @@ Page({
     }
   },
 
-  showUserInfo(event) {
-    let username = event.target.dataset.postinfo.username
-    wx.navigateTo({
-      url: '/pages/user-info/index?username=' + username
-    })
-  },
-  showPostType(event) {
-    let type = event.target.dataset.postinfo.type
-    wx.navigateTo({
-      url: '/pages/post-type/index?type=' + type
-    })
-  },
-  showPostDetail(event) {
-    let postInfo = JSON.stringify(event.target.dataset.postinfo)
-    wx.navigateTo({
-      url: '/pages/post-detail/index?postInfo=' + postInfo
-    })
-  },
+
 
   addPostClick() {
     let userInfo = this.data.userInfo

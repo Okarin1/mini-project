@@ -15,6 +15,5 @@
  <view class="thumbs-bar">
   <van-button icon="good-job-o" color="{{ isThumbed && thumbColor}}" plain catchtap="handleThumbClick">{{thumbNum}}</van-button>
   <van-button icon="comment-o" plain>{{0}}</van-button>
-  <van-button icon="share-o"plain />
 </view>
 </view>

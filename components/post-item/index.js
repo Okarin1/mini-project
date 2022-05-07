@@ -1,6 +1,6 @@
 // components/post-item/index.js
 import {
-  thumbPost
+  thumbPost,checkThumbsPosts
 } from "../../service/api_home"
 Component({
   /**
@@ -9,9 +9,20 @@ Component({
   lifetimes: {
     attached: function() {
      let thumbNum = this.properties.item.thumbs
+     let userId = this.properties.userInfo.id 
+     let postsId = this.properties.item.postsId
       this.setData({
         thumbNum:thumbNum
       })
+      if(userId){
+        checkThumbsPosts(postsId,userId).then((res)=>{
+          if(res.msg == "已经点赞"){
+            this.setData({
+              isThumbed:true
+            })
+          }
+        })
+      }
     },
   },
   properties: {
@@ -37,21 +48,32 @@ Component({
     thumbColor:"#007acc",
     thumbNum:0
   },
-  
 
   /**
    * 组件的方法列表
    */
   methods: {
     handleUserClick: function() {
-      this.triggerEvent("userClick")
+      let username =  this.properties.item.username
+      wx.navigateTo({
+        url: '/pages/user-info/index?username=' + username
+      })
     },
+
     handlePostClick:function(){
-      this.triggerEvent("postClick")
+      let postInfo = JSON.stringify(this.properties.item)
+      wx.navigateTo({
+        url: '/pages/post-detail/index?postInfo=' + postInfo
+      })
     },
+
     handleTypeClick:function(){
-      this.triggerEvent("typeClick")
+      let type = this.properties.item.type
+      wx.navigateTo({
+        url: '/pages/post-type/index?type=' + type
+      })
     },
+
     handleThumbClick: function() {
       let userId = this.properties.userInfo.id 
       let postsId = this.properties.item.postsId
@@ -83,7 +105,6 @@ Component({
           duration: 2000
         })
       }
-      
       // this.triggerEvent("thumbClick")
     },
   }

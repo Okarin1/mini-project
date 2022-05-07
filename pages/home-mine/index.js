@@ -14,7 +14,7 @@ Page({
    */
   data: {
     userInfo: {},
-    postList:[]
+    postList: []
   },
 
   /**
@@ -25,40 +25,50 @@ Page({
   },
 
   getUserHandler() {
-      return (res) => {
-        if(res.id){
+    return (res) => {
+      if (res.id) {
         this.setData({
           userInfo: res
         })
-        getUserPostInfoById(res.id).then(res=>{
-          if(res.posts){
-            res.posts.forEach(item=>{
-              item.nickname = this.data.userInfo.nickname
-              item.headPortrait = this.data.userInfo.headPortrait
-            })
-            this.setData({
-              postList:res.posts
-            })
-          }
+        this.getMyPostList(res.id)
+      } else {
+        this.setData({
+          userInfo: {}
         })
       }
     }
   },
-  handleLoginClick(){
+
+  getMyPostList(id) {
+    getUserPostInfoById(id).then(res => {
+      if (res.posts) {
+        res.posts.forEach(item => {
+          item.nickname = this.data.userInfo.nickname
+          item.headPortrait = this.data.userInfo.headPortrait
+          item.username = this.data.userInfo.username
+        })
+        this.setData({
+          postList: res.posts
+        })
+      }
+    })
+  },
+
+  handleLoginClick() {
     wx.navigateTo({
       url: '/pages/login/index',
     })
   },
-  showMyPosts(){
+  showMyPosts() {
     let postList = JSON.stringify(this.data.postList)
     wx.navigateTo({
       url: '/pages/my-post/index?postList=' + postList,
     })
   },
-  removeLoginClick(){
+  removeLoginClick() {
     userStore.setState("userInfo", {})
   },
-  handleUserInfo(){
+  handleUserInfo() {
     let username = this.data.userInfo.username
     wx.navigateTo({
       url: '/pages/user-info/index?username=' + username
