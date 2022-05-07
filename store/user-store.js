@@ -17,7 +17,7 @@ const userStore = new EventStore({
               ctx.userInfo = res["用户信息"]
             }else{
               wx.showToast({
-                title: "登录失败，请检查用户名或密码",
+                title: "登录失败，用户名或密码错误",
                 icon: 'none',
                 duration: 2000
               })

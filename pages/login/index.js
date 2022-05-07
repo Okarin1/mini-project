@@ -22,7 +22,15 @@ Page({
   loginClick(){
     const username = this.data.username
     const password = this.data.password
-    userStore.dispatch("getUserDataAction", username, password)
+    if(username  && password){
+      userStore.dispatch("getUserDataAction", username, password)
+    }else{
+      wx.showToast({
+        title: "请输入用户名和密码",
+        icon: 'none',
+        duration: 2000
+      })
+    }
     userStore.onState("userInfo", this.getLoginHandler())
   },
   
