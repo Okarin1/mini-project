@@ -14,7 +14,8 @@ Page({
     user: null,
     username:null,
     userPostList: null,
-    isUser:false
+    isUser:false,
+    userInfo:{}
   },
 
   /**
@@ -36,7 +37,10 @@ Page({
 
   isLoginUser(){
     return (res)=>{
-      if(res){
+      if(res.id){
+        this.setData({
+          userInfo:res
+        })
         if(res.username == this.data.username)
         this.setData({
           isUser: true
@@ -45,12 +49,6 @@ Page({
       }
     },
     
-    showPostType(event){
-      let type = event.target.dataset.postinfo.type
-      wx.navigateTo({
-        url: '/pages/post-type/index?type=' + type
-      })
-    },
     
   getUserData(name) {
     getUserInfoByUserName(name).then(res => {
@@ -63,6 +61,7 @@ Page({
             res.posts.forEach(item=>{
               item.nickname = this.data.user.nickname
               item.headPortrait = this.data.user.headPortrait
+              item.username = this.data.user.username
             })
             let postsList = res.posts.reverse()
             this.setData({
