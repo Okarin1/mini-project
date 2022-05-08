@@ -20,6 +20,10 @@ Component({
             this.setData({
               isThumbed:true
             })
+          }else if(res.msg == "没有点赞"){
+            this.setData({
+              isThumbed:false
+            })
           }
         })
       }
