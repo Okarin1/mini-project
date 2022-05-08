@@ -71,10 +71,14 @@ Page({
 
   getUserHandler() {
     return (res) => {
-      if (res.id) {
+      if (res) {
         this.setData({
           userInfo: res
         })
+        this.setData({
+          recommendPostList: [],
+        })
+        this.getPostList(1)
       }
     }
   },
