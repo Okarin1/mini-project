@@ -1,19 +1,18 @@
 <!--pages/home-remind/index.wxml-->
-
-<view class="un-login" wx:if="{{!userInfo.id}}">
-  <view>
-    <van-button color="#007acc" bind:click="handleLoginClick" round>点击登录</van-button>
-  </view>
-  <view class="info">
-    <text>注册登录解锁更多精彩</text>
-  </view>
+<view>
+<view class="header">
+  <area-header title="我的通知" showRight="{{false}}"></area-header>
 </view>
-<view wx:if="{{userInfo.id}}">
-  <area-header title="我的通知"  showRight="{{false}}"></area-header>
-  <view wx:if="{{noticeList.length != 0}}"  class="notice-list">
-    <block wx:for="{{noticeList}}" wx:key="postsId" >
-    <notice-item item="{{item}}"></notice-item>
-    <van-divider />
-  </block>
+ 
+  <view wx:if="{{noticeList.length != 0}}" class="notice-list">
+    <block wx:for="{{noticeList}}" wx:key="index">
+      <notice-item item="{{item}}"></notice-item>
+    </block>
+  </view>
+
+  <view wx:else class="empty-notice">
+    <van-empty description="没有新的通知">
+       <van-button wx:if="{{!userInfo.id}}" color="#007acc" bind:click="handleLoginClick" round>点击登录</van-button>
+    </van-empty>
   </view>
 </view>
