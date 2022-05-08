@@ -21,6 +21,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleUserClick: function() {
+      let username =  this.properties.item.username
+      wx.navigateTo({
+        url: '/pages/user-info/index?username=' + username
+      })
+    },
+    handleNoticeClick:function(){
+      let postsId = this.properties.item.postsId
+      wx.navigateTo({
+        url: '/pages/post-detail/index?postsId=' + postsId
+      })
+    },
   }
 })
