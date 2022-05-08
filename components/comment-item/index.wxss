@@ -1,0 +1,32 @@
+/* components/comment-item/index.wxss */
+.item{
+  display: flex;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.content{
+  display: flex;
+  flex-flow: column wrap;
+}
+.user-image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%
+}
+.user-name{
+  margin-left: 20rpx;
+  font-weight: 600;
+  color: #007acc;
+}
+
+.comment-content{
+  font-size: 30rpx;
+  margin: 10rpx 0 0 20rpx;
+  min-height: 100rpx;
+}
+.comment-time{
+  margin-left: 20rpx;
+  font-size: small;
+  color: #888;
+}
