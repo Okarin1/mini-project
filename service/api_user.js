@@ -33,3 +33,7 @@ export function updateUserInfoById({id,username,nickname,autograph,age,birthday,
 export function getNoticeById(id) {
   return myRequest.get(`/api/giao/user/commentorpostsnotice/getNotice/${id}`)
 }
+
+export function deleteNoticeById(id) {
+  return myRequest.post(`/api/giao/user/commentorpostsnotice/deleteNotice/${id}`)
+}

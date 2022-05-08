@@ -39,3 +39,15 @@ export function thumbPost(postsId,userId) {
 export function checkThumbsPosts(postsId,userId) {
   return myRequest.post("/api/giao/user/poststhumbs/checkThumbsPosts", {postsId,userId})
 }
+
+export function getPostByPostId(postsId) {
+  return myRequest.get(`/api/giao/user/posts/info/${postsId}`)
+}
+
+export function getPostThumbsList(postsId){
+  return myRequest.get(`/api/giao/user/poststhumbs/checkThumbsUsers/${postsId}`)
+}
+
+export function getPostCommentList(posts_id,page,queryby = "thumbs",limit = 10){
+  return myRequest.post("/api/giao/user/comment/info1",{posts_id,page,queryby,limit})
+}
