@@ -3,9 +3,10 @@ import {
   userStore,
 } from '../../store/index'
 import {
-  getNoticeById
+  getNoticeById,
+  deleteNoticeById
 } from "../../service/api_user"
-import{
+import {
   sortItemByDate
 } from "../../utils/helper"
 Page({
@@ -14,10 +15,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
-    commentNoticeList:[],
-    thumbsNoticeList:[],
-    noticeList:[]
+    userInfo: {},
+    commentNoticeList: [],
+    thumbsNoticeList: [],
+    noticeList: []
   },
 
   /**
@@ -32,30 +33,67 @@ Page({
         this.setData({
           userInfo: res
         })
-        res.id && this.getNoticeList(res.id)
+        if (this.data.userInfo.id) {
+          this.getNoticeList(res.id)
+        }
+
+        if (this.data.userInfo.id) {
+          setInterval(() => {
+            let pages = getCurrentPages()
+            if ((pages[0].route !== "pages/home-remind/index")&&(this.data.userInfo.id) ) {
+              this.getNoticeList(res.id)
+            }
+          }, 5000)
+        }
       }
     }
   },
 
-  getNoticeList(id){
+  getNoticeList(id) {
     wx.showNavigationBarLoading({
       success: (res) => {},
     })
-    getNoticeById(id).then((res)=>{
-
+    getNoticeById(id).then((res) => {
       this.setData({
-        commentNoticeList:res.postsCommentNotice,
-        thumbsNoticeList:res.thumbsNotice
+        commentNoticeList: res.postsCommentNotice,
+        thumbsNoticeList: res.thumbsNotice
       })
       let noticeList = res.postsCommentNotice.concat(res.thumbsNotice)
       sortItemByDate(noticeList)
+      noticeList = noticeList.filter(res => {
+        return res.username != this.data.userInfo.username
+      });
       this.setData({
-        noticeList:noticeList
+        noticeList: noticeList
       })
+      if (noticeList.length != 0) {
+        //设置角标
+        wx.setTabBarBadge({
+          index: 2, //tabBar序号，从0开始计数
+          text: noticeList.length.toString()
+        })
+      }
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
     })
   },
+
+  deleteNoticeList(id) {
+    if (this.data.noticeList != 0 && id) {
+      deleteNoticeById(id).then(res => {
+        if (res.msg == "success") {
+          this.setData({
+            noticeList: [],
+          })
+        }
+      })
+    }else {
+      //移除角标
+      wx.removeTabBarBadge({
+        index: 2,
+      })}
+  },
+
   handleLoginClick() {
     wx.navigateTo({
       url: '/pages/login/index',
@@ -79,7 +117,10 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    let id = this.data.userInfo.id
+    if (id) {
+      this.deleteNoticeList(id)
+    }
   },
 
   /**
