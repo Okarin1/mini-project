@@ -14,8 +14,8 @@
 }
 
 .user-image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%
 }
 .user-name{
@@ -35,4 +35,8 @@
   font-size: 30rpx;
   overflow: hidden;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+}
+
+.thumb-list{
+  margin-top: 20rpx;
 }

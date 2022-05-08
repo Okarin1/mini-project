@@ -1,4 +1,5 @@
 // pages/post-detail/index.js
+import{ getPostByPostId ,getPostThumbsList,getPostCommentList} from"../../service/api_home"
 Page({
 
   /**
@@ -7,16 +8,45 @@ Page({
   data: {
   postInfo:{},
   active: 1,
+  thumbsList:[],
+  commentList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let postInfo = JSON.parse(options.postInfo)
-    this.setData({
-      postInfo:postInfo
-    })
+    if(options.postInfo){
+      let postInfo = JSON.parse(options.postInfo)
+      this.setData({
+        postInfo:postInfo
+      })
+    }else{
+      if(options.postsId){
+        getPostByPostId(options.postsId).then(res=>{
+          this.setData({
+            postInfo:res.posts
+          })
+        })
+      }
+    }
+    let postsId = this.data.postInfo.postsId
+    if(postsId){
+      getPostThumbsList(postsId).then(res=>{
+        if(res.msg == "success"){
+          this.setData({
+            thumbsList:res.records
+          })
+        }
+      })
+      getPostCommentList(postsId,1).then(res=>{
+        if(res.msg == "success"){
+          this.setData({
+            commentList:res.Commentlist.records
+          })
+        }
+      })
+    }
   },
 
   onChange(event) {

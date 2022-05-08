@@ -16,6 +16,18 @@
   </view>
 </view>
 <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">
-  <van-tab title="赞 {{postInfo.thumbs}}"></van-tab>
-  <van-tab title="评论 0"></van-tab>
+  <van-tab title="赞 {{postInfo.thumbs}}">
+  <view class="thumb-list">
+    <block wx:for="{{thumbsList}}" wx:if="{{thumbList.length != 0 }}" wx:key="id">
+    <user-list-item  item="{{item}}"/>
+  </block>
+  </view>
+  </van-tab>
+  <van-tab title="评论 {{commentList.length}}">
+    <view class="comment-list">
+    <block wx:for="{{commentList}}" wx:if="{{commentList.length != 0 }}" wx:key="id">
+    <comment-item  item="{{item}}"/>
+  </block>
+  </view>
+  </van-tab>
 </van-tabs>
