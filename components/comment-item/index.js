@@ -21,6 +21,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleUserClick: function() {
+      let username =  this.properties.item.userName
+      wx.navigateTo({
+        url: '/pages/user-info/index?username=' + username
+      })
+    },
   }
 })
