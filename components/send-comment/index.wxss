@@ -1,0 +1,13 @@
+/* components/send-comment/index.wxss */
+.comment{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding-bottom: 30rpx;
+  z-index: 9;
+}
+.textarea{
+  min-height: 300rpx !important;
+}
