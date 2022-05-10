@@ -3,12 +3,12 @@
 <van-cell-group>
   <van-cell bindtap="showTypePost" title="{{format.showPostType(postInfo.type)}}" is-link />
 </van-cell-group>
-<view class="item"  wx:if="{{postInfo.postsId}}">
-  <view class="user" >
+<view class="item" wx:if="{{postInfo.postsId}}">
+  <view class="user">
     <image class="user-image" bindtap="showUserInfo" src="{{format.padHeadImgUrl(postInfo.headPortrait)}}"></image>
     <view>
       <view class="user-name" bindtap="showUserInfo">{{postInfo.nickname}}</view>
-    <view class="post-time">{{format.completeTime(postInfo.createDate)}}</view>
+      <view class="post-time">{{format.completeTime(postInfo.createDate)}}</view>
     </view>
   </view>
   <view class="content">
@@ -16,18 +16,21 @@
   </view>
 </view>
 <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">
-  <van-tab title="赞 {{postInfo.thumbs}}">
-  <view class="thumb-list">
-    <block wx:for="{{thumbsList}}" wx:if="{{thumbList.length != 0 }}" wx:key="id">
-    <user-list-item  item="{{item}}"/>
-  </block>
-  </view>
+  <van-tab title="赞 {{thumbsList.length}}">
+    <view class="thumb-list">
+      <block wx:for="{{thumbsList}}" wx:if="{{thumbList.length != 0 }}" wx:key="id">
+        <user-list-item item="{{item}}" />
+      </block>
+    </view>
   </van-tab>
   <van-tab title="评论 {{commentList.length}}">
     <view class="comment-list">
-    <block wx:for="{{commentList}}" wx:if="{{commentList.length != 0 }}" wx:key="id">
-    <comment-item  item="{{item}}"/>
-  </block>
-  </view>
+      <block wx:for="{{commentList}}" wx:if="{{commentList.length != 0 }}" wx:key="id">
+        <comment-item item="{{item}}" />
+      </block>
+      <view class="send-comment">
+        <send-comment bind:click="sendComment" userInfo="{{userInfo}}" />
+      </view>
+    </view>
   </van-tab>
 </van-tabs>

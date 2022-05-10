@@ -5,6 +5,7 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "user-list-item":"../../components/user-list-item",
-    "comment-item":"../../components/comment-item"
+    "comment-item":"../../components/comment-item",
+    "send-comment":"../../components/send-comment"
   }
 }
