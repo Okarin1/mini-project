@@ -5,4 +5,6 @@
   style="{{ shouldShow ? '' : 'display: none;' }}"
 >
   <slot wx:if="{{ shouldRender }}" />
+  <slot  wx:else style="display:none" /> 
 </view>
+

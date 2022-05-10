@@ -24,3 +24,6 @@
     bind:tap="onClickCloseIcon"
   />
 </view>
+<view wx:else style="display:none">
+  <slot />
+</view>
