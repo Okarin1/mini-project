@@ -67,6 +67,7 @@ Page({
   },
   removeLoginClick() {
     userStore.setState("userInfo", {})
+    userStore.offState("userInfo", this.getUserHandler())
   },
   handleUserInfo() {
     let username = this.data.userInfo.username
