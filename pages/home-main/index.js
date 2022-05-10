@@ -3,7 +3,6 @@ import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import {
   getBanner,
   getRemmedPost,
-  thumbPost
 } from "../../service/api_home"
 import {
   queryRect,
@@ -147,7 +146,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    userStore.offState("userInfo", this.getUserHandler())
   },
 
   /**
