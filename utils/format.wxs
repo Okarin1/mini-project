@@ -36,7 +36,7 @@ function formatDate(time) {
 
 function completeTime(time) {
 	var diff =  getDate().getTime() -  getDate(time).getTime();
-	return diff / 1000 < 60 ? Math.floor(diff / 1000) + '秒前' :
+	return diff / 1000 < 60 ? '刚刚' :
 		diff / 1000 / 60 < 60 ? Math.floor(diff / 1000 / 60) + '分钟前' :
 		diff / 1000 / 60 / 60 < 24 ? Math.floor(diff / 1000 / 60 / 60) + '小时前' :
 		diff / 1000 / 60 / 60 / 24 < 7 ? Math.floor(diff / 1000 / 60 / 60 / 24) + '天前' :
