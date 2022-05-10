@@ -10,7 +10,9 @@
     "pages/user-edit/index",
     "pages/post-detail/index",
     "pages/post-type/index",
-    "pages/my-post/index"
+    "pages/my-post/index",
+    "pages/phone-detail/index",
+    "pages/phone-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

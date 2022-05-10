@@ -1,0 +1,10 @@
+<!--pages/phone-list/index.wxml-->
+<view>
+  <area-header title="{{title}}"  showRight="{{false}}"></area-header>
+  <view class="phone-list">
+    <block wx:for="{{phoneList}}" wx:key="postsId">
+    <phone-list-item item="{{item}}" bindtap="showPhoneDetail" data-id="{{item.id}}"></phone-list-item>
+  </block>
+  </view>
+
+</view>

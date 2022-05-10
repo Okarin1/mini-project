@@ -1,0 +1,19 @@
+/* components/phone-list-item/index.wxss */
+.item{
+  padding: 10rpx 20rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.phone-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.phone-name{
+  margin-left: 20rpx;
+  font-weight: 600;
+  font-size: 29rpx;
+}

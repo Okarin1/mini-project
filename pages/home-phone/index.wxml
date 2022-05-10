@@ -2,11 +2,11 @@
 
 <area-header title="今日热门"></area-header>
 <view class="ranking">
-<block wx:for="{{ranking}}" wx:key="spuId">
-<view class="ranking-item">
-  <ranking-item item="{{item}}" index="{{index+1}}"></ranking-item>
-</view>
-</block>
+  <block wx:for="{{ranking}}" wx:key="spuId">
+    <view class="ranking-item">
+      <ranking-item item="{{item}}" index="{{index+1}}"></ranking-item>
+    </view>
+  </block>
 </view>
 
 
@@ -15,7 +15,7 @@
   <area-header title="品牌榜" showRight="{{false}}"></area-header>
   <view class="brand-list">
     <block wx:for="{{brandList}}" wx:key="name">
-      <brand-list-item item="{{item}}">
+      <brand-list-item item="{{item}}" bindtap="handleBrandItemClick" data-idx="{{index}}">>
       </brand-list-item>
     </block>
   </view>

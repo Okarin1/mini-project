@@ -1,0 +1,6 @@
+<!--components/phone-list-item/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+  <view class="item">
+    <image class="phone-image" src="{{item.imageUrl}}"></image>
+    <view class="phone-name" >{{item.spuName}}</view>
+  </view>

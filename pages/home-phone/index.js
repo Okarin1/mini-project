@@ -1,18 +1,23 @@
 // pages/home-phone/index.js
 import {
   brandStore,
+  brandMap
 } from '../../store/index'
 import{getRankingList} from "../../service/api_phone"
 const brandInfo = [{
-  brand: "未知"
+  brand: "未知",
+  brandName:"none"
 }, {
   brand: "华为",
+  brandName:"huaweiList",
   cover: "../../assets/images/cover/cover_huawei.jpg"
 }, {
   brand: "苹果",
+  brandName:"iphoneList",
   cover: "../../assets/images/cover/cover_iphone.jpg"
 }, {
   brand: "小米",
+  brandName:"xiaomiList",
   cover: "../../assets/images/cover/cover_xiaomi.jpg"
 }]
 Page({
@@ -60,6 +65,24 @@ Page({
         brandList: newLists
       })
     }
+  },
+
+  handleBrandItemClick(event) {
+    const idx = event.currentTarget.dataset.idx
+    const brandName = brandMap[idx]
+    let title = " "
+    brandInfo.findIndex(res=>{
+      if(res.brandName == brandName){
+       title = res.brand
+      }
+    })
+    this.navigateToDetailPhonesPage(brandName,title)
+  },
+
+  navigateToDetailPhonesPage(brandName,title) {
+    wx.navigateTo({
+      url: `/pages/phone-list/index?brandName=${brandName}&title=${title}`
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
