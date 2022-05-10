@@ -2,8 +2,13 @@
 import {
   getPostByPostId,
   getPostThumbsList,
-  getPostCommentList
+  getPostCommentList,
+  sendPostComment
 } from "../../service/api_home"
+
+import {
+  userStore,
+} from '../../store/index'
 Page({
 
   /**
@@ -13,7 +18,8 @@ Page({
     postInfo: {},
     active: 1,
     thumbsList: [],
-    commentList: []
+    commentList: [],
+    userInfo: {}
   },
 
   /**
@@ -39,7 +45,7 @@ Page({
         this.getPostDetail(options.postsId)
       })
     }
-
+    userStore.onState("userInfo", this.getUserHandler())
    
   },
 
@@ -68,17 +74,46 @@ Page({
     //   icon: 'none',
     // });
   },
+  getUserHandler() {
+    return (res) => {
+      if (res) {
+        this.setData({
+          userInfo: res
+        })
+      }
+    }
+  },
+
   showUserInfo() {
     let username = this.data.postInfo.username
     wx.navigateTo({
       url: '/pages/user-info/index?username=' + username
     })
   },
+
   showTypePost() {
     let type = this.data.postInfo.type
     wx.navigateTo({
       url: '/pages/post-type/index?type=' + type
     })
+  },
+  sendComment(event){
+    wx.showLoading({
+      title: '正在发布',
+    })
+    let comment = event.detail.comment
+    let userId = this.data.userInfo.id
+    let postsId = this.data.postInfo.postsId
+    if(comment && userId && postsId){
+      sendPostComment(postsId,userId,comment).then(res=>{
+        wx.hideLoading({
+          success: (res) => {},
+        })
+        if(res.msg == "success"){
+          this.getPostDetail(postsId)
+        }
+      })
+    }
   },
 
   /**
@@ -106,7 +141,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    userStore.offState("userInfo", this.getUserHandler())
   },
 
   /**
