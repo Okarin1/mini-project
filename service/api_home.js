@@ -48,6 +48,10 @@ export function getPostThumbsList(postsId){
   return myRequest.get(`/api/giao/user/poststhumbs/checkThumbsUsers/${postsId}`)
 }
 
-export function getPostCommentList(posts_id,page,queryby = "thumbs",limit = 10){
+export function getPostCommentList(posts_id,page,queryby = "create_date",limit = 10){
   return myRequest.post("/api/giao/user/comment/info1",{posts_id,page,queryby,limit})
+}
+
+export function sendPostComment(postsId,userId,userComment){
+  return myRequest.post("/api/giao/user/comment/save",{postsId,userId,userComment})
 }
