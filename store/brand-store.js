@@ -27,5 +27,6 @@ const brandStore = new EventStore({
 })
 
 export {
-  brandStore
+  brandStore,
+  brandMap
 }
