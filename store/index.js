@@ -1,3 +1,3 @@
-import { brandStore } from './brand-store'
+import { brandStore,brandMap } from './brand-store'
 import { userStore} from'./user-store'
-export { brandStore,userStore }
+export { brandStore,brandMap,userStore }
