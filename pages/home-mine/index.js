@@ -26,32 +26,35 @@ Page({
 
   getUserHandler() {
     return (res) => {
-      if (res.id) {
+      if (res) {
         this.setData({
           userInfo: res
         })
         this.getMyPostList(res.id)
-      } else {
-        this.setData({
-          userInfo: {}
-        })
       }
     }
   },
 
   getMyPostList(id) {
-    getUserPostInfoById(id).then(res => {
-      if (res.posts) {
-        res.posts.forEach(item => {
-          item.nickname = this.data.userInfo.nickname
-          item.headPortrait = this.data.userInfo.headPortrait
-          item.username = this.data.userInfo.username
-        })
-        this.setData({
-          postList: res.posts
-        })
-      }
-    })
+    if(id){
+      getUserPostInfoById(id).then(res => {
+        if (res.posts) {
+          res.posts.forEach(item => {
+            item.nickname = this.data.userInfo.nickname
+            item.headPortrait = this.data.userInfo.headPortrait
+            item.username = this.data.userInfo.username
+          })
+          this.setData({
+            postList: res.posts
+          })
+        }
+      })
+    }else{
+      this.setData({
+        postList: []
+      })
+    }
+
   },
 
   handleLoginClick() {
