@@ -1,6 +1,6 @@
 <!--components/send-comment/index.wxml-->
 <view class="comment">
-  <van-cell  title="写回复" size="large" border="{{false}}" icon="edit" clickable bind:click="showPopup" />
+  <van-cell  title="{{title}}" size="large" border="{{false}}" icon="edit" clickable bind:click="showPopup" />
 </view>
 
 <input type="text" model:value="{{ comment }}" />

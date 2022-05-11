@@ -7,6 +7,10 @@ Component({
     userInfo:{
       type:Object,
       value:{}
+    },
+    title:{
+      type:String,
+      value:"写回复"
     }
   },
 
