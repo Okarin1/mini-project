@@ -11,10 +11,6 @@ import {
   userStore,
 } from '../../store/index'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     banners: [],
     recommendPostList: [],
@@ -23,14 +19,7 @@ Page({
     userInfo: {},
     thumbedList: []
   },
-
-
-  handleSearchClick() {
-    console.log("clicked")
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  
   onLoad(options) {
     this.getPageData()
     this.getPostList(1)
@@ -82,8 +71,6 @@ Page({
     }
   },
 
-
-
   addPostClick() {
     let userInfo = this.data.userInfo
     if (userInfo.id) {
@@ -107,7 +94,6 @@ Page({
 
   },
 
-
   handleSwiperImageLoad() {
     queryRect('.swiper-image').then(res => {
       const rect = res[0]
@@ -121,30 +107,11 @@ Page({
       url: '/pages/login/index',
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
+  handleSearchClick() {
+    console.log("clicked")
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
     userStore.offState("userInfo", this.getUserHandler())
   },
@@ -167,11 +134,4 @@ Page({
     let page = Math.ceil((this.data.recommendPostList.length) / 10) + 1
     this.getPostList(page)
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
