@@ -1,12 +1,17 @@
 <!--pages/home-main/index.wxml-->
+<!-- 搜索栏 -->
 <van-search disabled shape="round" background="#f6f6f6" placeholder="搜索你感兴趣的手机" bind:click-input="handleSearchClick" />
+
+<!-- 跳转登录 -->
 <view class="guide" wx:if="{{!userInfo.id}}">
-<view><text>立即登录，发现更多精彩</text></view>
-<view class="guide-button">
-  <van-button bind:click="handleLoginClick" size="small" plain type="info" >登录</van-button> 
-  <van-button bind:click="handleLoginClick" size="small"  type="info">注册</van-button> 
+  <view><text>立即登录，发现更多精彩</text></view>
+  <view class="guide-button">
+    <van-button bind:click="handleLoginClick" size="small" plain type="info">登录</van-button>
+    <van-button bind:click="handleLoginClick" size="small" type="info">注册</van-button>
+  </view>
 </view>
-</view>
+
+<!-- 轮播图 -->
 <swiper class="swiper" indicator-dots autoplay interval="2000" circular style="height: {{swiperHeight}}px;">
   <block wx:for="{{banners}}" wx:key="bannerId">
     <swiper-item class="swiper-item">
@@ -15,13 +20,15 @@
   </block>
 </swiper>
 
+<!-- 发布按钮 -->
 <van-dialog id="van-dialog" />
 <view class="post-button">
   <van-button bind:click="addPostClick" icon="plus" type="info" round />
 </view>
 
+<!-- 帖子展示 -->
 <view>
-  <area-header title="头条推荐"  showRight="{{false}}"></area-header>
+  <area-header title="头条推荐" showRight="{{false}}"></area-header>
   <block wx:for="{{recommendPostList}}" wx:key="postsId">
     <post-item item="{{item}}" userInfo="{{userInfo}}"></post-item>
   </block>
