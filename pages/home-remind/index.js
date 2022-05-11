@@ -72,14 +72,17 @@ Page({
           index: 2, //tabBar序号，从0开始计数
           text: noticeList.length.toString()
         })
-      }
+      }else{
+        wx.removeTabBarBadge({
+          index: 2,
+      })}
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
     })
   },
 
   deleteNoticeList(id) {
-    if (this.data.noticeList != 0 && id) {
+    if (this.data.noticeList.length != 0) {
       deleteNoticeById(id).then(res => {
         if (res.msg == "success") {
           this.setData({
@@ -87,11 +90,7 @@ Page({
           })
         }
       })
-    }else {
-      //移除角标
-      wx.removeTabBarBadge({
-        index: 2,
-      })}
+    }
   },
 
   handleLoginClick() {
