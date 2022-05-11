@@ -1,2 +1,35 @@
 <!--pages/phone-detail/index.wxml-->
-<text>pages/phone-detail/index.wxml</text>
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view class="phone-detail">
+  <view class="phone-info" wx:if="{{phoneInfo.spuId}}">
+    <image class="cover" src="{{phoneInfo.skuDefaultImg}}"></image>
+    <view class="phone-title">
+      <view class="name">{{phoneInfo.skuName}}</view>
+      <view class="info"><text>{{commentNum}} 讨论</text></view>
+    </view>
+  </view>
+
+  <view class="phone-plus">
+    <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">
+      <van-tab title="参数">
+        <view class="phone-param" wx:if="{{phoneParam.length != 0}}">
+          <van-cell-group>
+            <block wx:for="{{phoneParam}}" wx:key="attrId">
+              <van-cell title="{{item.attrName}}" value="{{item.attrValue}}" center size="large" />
+            </block>
+          </van-cell-group>
+        </view>
+      </van-tab>
+      <van-tab title="评价">
+        <view class="comment-list" wx:if="{{commentList.length != 0}}">
+          <block wx:for="{{commentList}}" wx:key="id">
+            <comment-item item="{{item}}" />
+          </block>
+          <view class="send-comment">
+            <send-comment title="写评价" bind:click="sendComment" userInfo="{{userInfo}}" />
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
+</view>

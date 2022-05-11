@@ -12,7 +12,7 @@ Component({
      let userId = this.properties.userInfo.id 
      let postsId = this.properties.item.postsId
       this.setData({
-        thumbNum:thumbNum
+        thumbNum:thumbNum,
       })
       if(userId){
         checkThumbsPosts(postsId,userId).then((res)=>{

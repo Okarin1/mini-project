@@ -1,0 +1,21 @@
+/* components/show-image/index.wxss */
+.items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.album {
+  display: flex;
+  justify-content: center;
+  width: 28vw;
+  height: 28vw;
+  margin: 5rpx;
+}
+
+.album .image{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+

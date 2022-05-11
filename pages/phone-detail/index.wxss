@@ -1,1 +1,57 @@
 /* pages/phone-detail/index.wxss */
+.phone-detail {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.phone-info {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 300rpx;
+  padding: 50rpx 30rpx;
+  background-color: #007acc;
+  color: #fff;
+}
+
+
+.phone-info .cover {
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+
+.phone-title {
+  display: flex;
+  max-width: 450rpx;
+  flex-flow: column wrap;
+  margin-left: 20rpx;
+}
+
+.phone-info .name {
+  margin-top: 20rpx;
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.phone-info .info {
+  margin: 20rpx 0 40rpx 0;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.phone-plus {
+  margin-top: -40rpx;
+  background-color: #fff;
+  border-radius: 25rpx;
+  z-index: 5;
+  padding: 0 20rpx;
+  flex: 1
+}
+
+
+.van-cell__value{
+  display: inline-block;
+  text-align: left !important;
+  word-break: break-all !important;
+}

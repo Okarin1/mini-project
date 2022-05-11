@@ -13,6 +13,9 @@
   </view>
   <view class="content">
     <view class="post"><text user-select>{{postInfo.article}}</text></view>
+    <view class="image-content" wx:if="{{postInfo.image}}">
+     <show-image image="{{postInfo.image}}"></show-image>
+  </view>
   </view>
 </view>
 <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">

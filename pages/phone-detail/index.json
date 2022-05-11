@@ -1,3 +1,13 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f6f6f6",
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "comment-item":"../../components/comment-item",
+    "send-comment":"../../components/send-comment"
+  }
 }
