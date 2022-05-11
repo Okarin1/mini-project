@@ -1,11 +1,11 @@
 <!--pages/my-post/index.wxml-->
 <view>
-  <area-header title="我的动态"  showRight="{{false}}"></area-header>
-  <view class="post-list">
-  <block wx:for="{{myPostList}}" wx:key="postsId"  wx:if="{{myPostList}}">
+  <area-header title="我的帖子"  showRight="{{false}}"></area-header>
+  <view class="post-list"  wx:if="{{myPostList.length != 0}}">
+  <block wx:for="{{myPostList}}" wx:key="postsId" >
     <post-item item="{{item}}"></post-item>
     <hr/>
   </block>
-  <view  wx:if="{{!myPostList}}" class="none-list">该用户似乎很懒，什么帖子都没有</view>
+  <view  wx:if="{{myPostList.length == 0}}" class="none-list">该用户似乎很懒，什么帖子都没有</view>
 </view>
 </view>
