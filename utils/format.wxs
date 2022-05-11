@@ -23,29 +23,32 @@ function padLeftZero(str) {
 //时间格式化
 function formatDate(time) {
   var date = getDate(time);
-  console.log(date)
   var o = {
+    'Y':date.getFullYear(),
     'M': date.getMonth() + 1,
     'd': date.getDate(),
     'h': date.getHours(),
     'm': date.getMinutes(),
     's': date.getSeconds()
   };
-  return padLeftZero(o.h)+ ":" +padLeftZero(o.m)  
+  return padLeftZero(o.Y)+ "-" +padLeftZero(o.M)+ "-" + padLeftZero(o.d)
 }
 
+//距离目前时间
 function completeTime(time) {
 	var diff =  getDate().getTime() -  getDate(time).getTime();
 	return diff / 1000 < 60 ? '刚刚' :
 		diff / 1000 / 60 < 60 ? Math.floor(diff / 1000 / 60) + '分钟前' :
 		diff / 1000 / 60 / 60 < 24 ? Math.floor(diff / 1000 / 60 / 60) + '小时前' :
 		diff / 1000 / 60 / 60 / 24 < 7 ? Math.floor(diff / 1000 / 60 / 60 / 24) + '天前' :
-		time;
+    formatDate(time);
 }
 
+//图片头部
 function padHeadImgUrl(url){
   return 'http://101.43.221.86:8081/upload/' + url
 }
+
 
 var typeMap = ["综合讨论","玩机技巧","好物安利","开箱评测","酷玩夜话"]
 function showPostType(num){
