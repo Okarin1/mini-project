@@ -12,7 +12,8 @@
 .user-image {
   width: 70rpx;
   height: 70rpx;
-  border-radius: 50%
+  border-radius: 50%;
+  flex-shrink:0
 }
 .user-name{
   margin-left: 20rpx;
