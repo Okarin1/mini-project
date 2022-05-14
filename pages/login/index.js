@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      username:"",
-      password:""
+    username: "",
+    password: ""
   },
 
   /**
@@ -19,30 +19,28 @@ Page({
 
   },
 
-  loginClick(){
+  loginClick() {
     const username = this.data.username
     const password = this.data.password
-    if(username  && password){
+    if (username && password) {
       userStore.dispatch("getUserDataAction", username, password)
-    }else{
+    } else {
       wx.showToast({
         title: "请输入用户名和密码",
         icon: 'none',
         duration: 2000
       })
     }
-    userStore.onState("userInfo", this.getLoginHandler())
+    userStore.onState("userInfo", this.getLoginHandler)
   },
-  
-  getLoginHandler(){
-    return (res) => {
-     if(res.id){
-       setTimeout(()=>{
+
+  getLoginHandler(res) {
+    if (res.id) {
+      setTimeout(() => {
         wx.switchTab({
           url: '/pages/home-mine/index',
         })
-       },500)
-     }
+      }, 500)
     }
   },
 
@@ -71,7 +69,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    userStore.offState("userInfo", this.getLoginHandler)
   },
 
   /**
