@@ -14,7 +14,7 @@ Page({
    */
   data: {
     userInfo: {},
-    postList: []
+    postsNum: 0
   },
 
   /**
@@ -26,46 +26,34 @@ Page({
 
   getUserHandler() {
     return (res) => {
-      if (res) {
-        this.setData({
-          userInfo: res
-        })
-        this.getMyPostList(res.id)
-      }
+      this.setData({
+        userInfo: res
+      })
+      this.getMyPostsNum(res.id, 1)
     }
   },
 
-  getMyPostList(id) {
-    if(id){
-      getUserPostInfoById(id).then(res => {
+  getMyPostsNum(id) {
+    if (id) {
+      getUserPostInfoById(id, 1).then(res => {
         if (res.posts) {
-          res.posts.forEach(item => {
-            item.nickname = this.data.userInfo.nickname
-            item.headPortrait = this.data.userInfo.headPortrait
-            item.username = this.data.userInfo.username
-          })
           this.setData({
-            postList: res.posts
+            postsNum: res.total
           })
         }
       })
-    }else{
-      this.setData({
-        postList: []
-      })
     }
 
   },
-
   handleLoginClick() {
     wx.navigateTo({
       url: '/pages/login/index',
     })
   },
   showMyPosts() {
-    let postList = JSON.stringify(this.data.postList)
+    let userInfo = JSON.stringify(this.data.userInfo)
     wx.navigateTo({
-      url: '/pages/my-post/index?postList=' + postList,
+      url: '/pages/my-post/index?userInfo=' + userInfo,
     })
   },
   removeLoginClick() {

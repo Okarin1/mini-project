@@ -23,7 +23,7 @@
   </view>
   <view class="content">
     <view class="info-text" bindtap="showMyPosts">
-      <view class="num" >{{postList.length}}</view>
+      <view class="num" >{{postsNum}}</view>
       <view>帖子</view>
     </view>
     <view class="info-text">
