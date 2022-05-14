@@ -49,6 +49,14 @@ function padHeadImgUrl(url){
   return 'http://101.43.221.86:8081/upload/' + url
 }
 
+//性别
+function showGender(gender){
+  if(gender){
+    return gender == "1" ? "男" : "女"
+  }else{
+    return "神秘人"
+  }
+}
 
 var typeMap = ["综合讨论","玩机技巧","好物安利","开箱评测","酷玩夜话"]
 function showPostType(num){
@@ -64,5 +72,6 @@ module.exports = {
   formatDate: formatDate,
   completeTime:completeTime,
   padHeadImgUrl:padHeadImgUrl,
-  showPostType:showPostType
+  showPostType:showPostType,
+  showGender:showGender
 }
