@@ -63,7 +63,9 @@ class EventBus {
     }
     const handlers = this.eventBus[eventName] //拿到事件回调数组
     handlers.forEach((handler, index) => {
-      if (handler.eventCallback == eventCallback) handlers.splice(index, 1) //删除函数
+      if (handler.eventCallback == eventCallback){
+        handlers.splice(index, 1) //删除函数
+      } 
     })
     if (handlers.length === 0) {
       delete this.eventBus[eventName]
