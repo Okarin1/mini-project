@@ -1,5 +1,9 @@
 // pages/send-post/index.js
 import{sendPostById} from "../../service/api_home"
+import {
+  uploadImage
+} from "../../service/api_upload"
+
 Page({
 
   /**
@@ -13,8 +17,9 @@ Page({
       { text: '开箱评测', value: 4 },
       { text: '酷玩夜话', value: 5 }
     ],
+    fileList:[],
     value: 1,
-    message:"",
+    article:"",
     type:1,
   },
 
@@ -22,7 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({id:options.id})
+    this.setData({id:options.id} )
   },
   tagChange(value){
     this.setData({
@@ -30,22 +35,60 @@ Page({
     })
   },
   postClick(){
-    wx.showLoading({
-    })
-    let article = this.data.message
-    let type = this.data.type
-    let id = this.data.id
-    if(id){
-      sendPostById(id,type,article).then(
-        (res)=>{
-            wx.hideLoading()
-            if(res && res.msg == "success"){
-              wx.switchTab({
-                url: '/pages/home-main/index',
-              })}
+    wx.showLoading({})
+    const { fileList = [] } = this.data;
+    Promise.all(fileList.map(item=>{
+      return new Promise((resolve, reject)=>{
+          uploadImage(item.url).then(res=>{
+          resolve(JSON.parse(res).fileName)
+        })
+      })
+    })).then(res=>{
+      if(res[0]){
+        let article = this.data.article
+        let image = JSON.stringify(res)
+        let { type } = this.data
+        let { id } = this.data
+        if(id){
+          sendPostById(id,type,article,image).then(
+            (res)=>{
+                wx.hideLoading()
+                if(res && res.msg == "success"){
+                  wx.switchTab({
+                    url: '/pages/home-main/index',
+                  })}
+                  wx.showToast({
+                    title: '发布成功',
+                    icon: "none"
+                  })
+            }
+          )
         }
-      )
-    }
+      }else{
+        wx.showToast({
+          title: '请检查选择的图片',
+          icon: "none"
+        })
+      }
+      
+    })
+   
+  
+
+
+  },
+
+  cacheImage(event) {
+    const { file } = event.detail;
+    const { fileList = [] } = this.data;
+    fileList.push({ ...file});
+    this.setData({ fileList });
+  },
+  deleteImage(event){
+    const { index } = event.detail;
+    const { fileList = [] } = this.data;
+    fileList.splice(index,1)
+    this.setData({ fileList });
   },
 
   /**

@@ -2,7 +2,7 @@
 <van-cell-group>
   <van-cell title="发布新动态">
     <view slot="right-icon">
-      <van-button disabled="{{!message}}" color="#007acc" size="small" round bind:click="postClick">发布</van-button>
+      <van-button disabled="{{!article}}" color="#007acc" size="small" round bind:click="postClick">发布</van-button>
     </view>
   </van-cell>
 
@@ -15,7 +15,7 @@
   </van-cell>
 
   <van-field
-    model:value="{{ message }}"
+    model:value="{{ article }}"
     type="textarea"
     placeholder="分享你的想法..."
     autosize
@@ -26,6 +26,7 @@
     input-class="textarea"
   />
 
-
+  <van-uploader file-list="{{ fileList }}" bind:after-read="cacheImage" bind:delete="deleteImage">
+  </van-uploader>
 
 </van-cell-group>
