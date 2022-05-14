@@ -1,69 +1,72 @@
 // pages/my-post/index.js
+import {
+  getUserPostInfoById
+} from "../../service/api_user"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    myPostList: null,
+    myPostList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let postList = JSON.parse(options.postList)
+    let userInfo = JSON.parse(options.userInfo)
     this.setData({
-      myPostList:postList
+      userInfo:userInfo
     })
+    let id = this.data.userInfo.id
+    this.getPostListData(id, 1)
+  },
+  //获取用户帖子
+
+  async getPostListData(id, page) {
+    wx.showNavigationBarLoading()
+    let res = await getUserPostInfoById(id, page)
+    if(res.posts){
+      res.posts.forEach(item=>{
+        item.nickname = this.data.userInfo.nickname
+        item.headPortrait = this.data.userInfo.headPortrait
+        item.username = this.data.userInfo.username
+      })
+    }
+    let newData = this.data.myPostList
+    if (newData.length == res.total && page != 1) {
+      wx.hideNavigationBarLoading()
+      return
+    }
+    if (page === 1) {
+      newData = res.posts
+    } else {
+      newData = newData.concat(res.posts)
+    }
+   
+    //设置数据
+    this.setData({
+      myPostList: newData,
+    })
+    wx.hideNavigationBarLoading()
+    if (page === 1) {
+      wx.stopPullDownRefresh()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  //下拉刷新
   onPullDownRefresh() {
-
+    let id = this.data.userInfo.id
+    this.getPostListData(id, 1)
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
+  //上拉加载
   onReachBottom() {
-
+    let id = this.data.userInfo.id
+    let page = Math.ceil((this.data.myPostList.length) / 10) + 1
+    this.getPostListData(id, page)
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+ 
 })

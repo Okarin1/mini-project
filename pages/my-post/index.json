@@ -1,6 +1,10 @@
 {
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "post-item":"../../components/post-item/index",
-    "area-header":"../../components/area-header/index"
+    "area-header":"../../components/area-header/index",
+    "van-empty": "@vant/weapp/empty/index"
   }
 }
