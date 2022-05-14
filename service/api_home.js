@@ -18,8 +18,8 @@ export function getRemmedPost(page, limit = 10) {
   return myRequest.post("/api/giao/user/posts/list1", { page, limit })
 }
 
-export function sendPostById(userId,type,article,title){
-  return myRequest.post("/api/giao/user/posts/save", { userId,type,article,title})
+export function sendPostById(userId,type,article,image,title){
+  return myRequest.post("/api/giao/user/posts/save", { userId,type,article,image,title})
 }
 
 export function getPostByType(page,type,limit = 10) {
