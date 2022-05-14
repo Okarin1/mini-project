@@ -1,1 +1,50 @@
 /* pages/user-edit/index.wxss */
+.user-image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%
+}
+.autograph{
+  text-align: right;
+  color: #888;
+}
+
+.edit-nickname{
+  position: relative;
+  width: 600rpx;
+  height: 400rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.edit-nickname .input{
+  margin-top: 40rpx;
+  border-bottom: 1rpx solid #000;
+}
+.edit-nickname .button{
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  color: #007acc;
+}
+
+.textarea{
+  min-height: 300rpx !important;
+}
+
+.edit-head{
+  position: relative;
+  background-color: #f6f6f6;
+  width: 700rpx;
+  height: 1000rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.edit-head .show-image{
+  width: 400rpx;
+  height: 400rpx;
+}

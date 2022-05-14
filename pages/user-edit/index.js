@@ -1,106 +1,146 @@
 // pages/user-edit/index.js
-import {
-  updateUserInfoById
-} from "../../service/api_user"
-import {
-  userStore,
-} from '../../store/index'
+import { updateUserInfoById } from "../../service/api_user";
+import { uploadImage } from "../../service/api_upload";
+import { userStore } from "../../store/index";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
+    userInfo: {},
     nickname: "",
     autograph: "",
+    fileList: [],
+    showNameEdit: false,
+    showAutographEdit: false,
+    showHeadEdit: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    userStore.onState("userInfo", this.handleUserInfo())
+    userStore.onState("userInfo", this.handleUserInfo);
   },
 
-  handleUserInfo(){
-    return(res)=>{
-      this.setData({
-        userInfo:res,
-        nickname:res.nickname,
-        autograph:res.autograph
-      })
+  handleUserInfo(res) {
+    this.setData({
+      userInfo: res,
+      nickname: res.nickname,
+      autograph: res.autograph,
+    });
+  },
+
+  //显示昵称编辑
+  showNameEdit() {
+    this.setData({
+      showNameEdit: true,
+    });
+  },
+
+  //关闭昵称编辑
+  closeNameEdit() {
+    this.setData({
+      showNameEdit: false,
+    });
+  },
+
+  //编辑昵称
+  async editNameClick() {
+    let id = this.data.userInfo.id;
+    let nickname = this.data.nickname;
+    const res = await updateUserInfoById({
+      id,
+      nickname,
+    });
+    if (res.msg == "success") {
+      wx.showToast({
+        title: "更新成功",
+        icon: "none",
+      });
+      this.closeNameEdit();
+      this.updateInfo();
     }
   },
-  saveClick() {
-      updateUserInfoById({
-        id: this.data.userInfo.id,
-        autograph: this.data.autograph,
-        nickname:this.data.nickname
-      }).then(
-        (res)=>{
-          if(res.msg == "success"){
+
+  //显示签名编辑
+  showAutographEdit() {
+    this.setData({
+      showAutographEdit: true,
+    });
+  },
+
+  //关闭签名编辑
+  closeAutographEdit() {
+    this.setData({
+      showAutographEdit: false,
+    });
+  },
+
+  //编辑签名
+  async autographEditClick() {
+    let id = this.data.userInfo.id;
+    let autograph = this.data.autograph;
+    const res = await updateUserInfoById({
+      id,
+      autograph,
+    });
+    if (res.msg == "success") {
+      wx.showToast({
+        title: "更新成功",
+        icon: "none",
+      });
+      this.closeAutographEdit();
+      this.updateInfo();
+    }
+  },
+
+  //更新资料
+  updateInfo() {
+    let username = this.data.userInfo.username;
+    let password = this.data.userInfo.password;
+    userStore.dispatch("getUserDataAction", username, password);
+  },
+
+  //显示头像编辑
+  showHeadEdit() {
+    this.setData({
+      showHeadEdit: true,
+    });
+  },
+
+  //关闭头像编辑
+  closeHeadEdit() {
+    this.setData({
+      showHeadEdit: false,
+    });
+  },
+  //更换头像
+
+  async updataHead(event) {
+    const { file } = event.detail;
+    uploadImage(file.url).then((res) => {
+      let id = this.data.userInfo.id;
+      let headPortrait = JSON.parse(res).fileName;
+      if (headPortrait) {
+        updateUserInfoById({
+          id,
+          headPortrait,
+        }).then((res) => {
+          if (res.msg == "success") {
             wx.showToast({
-              title: '更新成功',
-            })
+              title: "更新成功",
+              icon: "none",
+            });
+            this.closeHeadEdit();
+            this.updateInfo();
           }
-          setTimeout(()=>{
-            let username = this.data.userInfo.username
-            let password = this.data.userInfo.password
-            userStore.dispatch("getUserDataAction", username, password)
-            wx.switchTab({
-              url: '/pages/home-mine/index',
-            })
-          },1000)
-        }
-      )
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+        });
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
-    userStore.offState("userInfo", this.handleUserInfo())
+    userStore.offState("userInfo", this.handleUserInfo);
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+});
