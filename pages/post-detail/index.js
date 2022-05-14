@@ -45,11 +45,11 @@ Page({
         this.getPostDetail(options.postsId)
       })
     }
-    userStore.onState("userInfo", this.getUserHandler())
-   
+    userStore.onState("userInfo", this.getUserHandler)
+
   },
 
-  getPostDetail(postsId){
+  getPostDetail(postsId) {
     if (postsId) {
       getPostThumbsList(postsId).then(res => {
         if (res.msg == "success") {
@@ -74,14 +74,10 @@ Page({
     //   icon: 'none',
     // });
   },
-  getUserHandler() {
-    return (res) => {
-      if (res) {
-        this.setData({
-          userInfo: res
-        })
-      }
-    }
+  getUserHandler(res) {
+    this.setData({
+      userInfo: res
+    })
   },
 
   showUserInfo() {
@@ -97,19 +93,19 @@ Page({
       url: '/pages/post-type/index?type=' + type
     })
   },
-  sendComment(event){
+  sendComment(event) {
     wx.showLoading({
       title: '正在发布',
     })
     let comment = event.detail.comment
     let userId = this.data.userInfo.id
     let postsId = this.data.postInfo.postsId
-    if(comment && userId && postsId){
-      sendPostComment(postsId,userId,comment).then(res=>{
+    if (comment && userId && postsId) {
+      sendPostComment(postsId, userId, comment).then(res => {
         wx.hideLoading({
           success: (res) => {},
         })
-        if(res.msg == "success"){
+        if (res.msg == "success") {
           this.getPostDetail(postsId)
         }
       })
@@ -141,7 +137,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    userStore.offState("userInfo", this.getUserHandler())
+    userStore.offState("userInfo", this.getUserHandler)
   },
 
   /**

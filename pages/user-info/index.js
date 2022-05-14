@@ -1,6 +1,7 @@
 // pages/user-info/index.js
 import {
-  getUserInfoByUserName,getUserPostInfoById
+  getUserInfoByUserName,
+  getUserPostInfoById
 } from "../../service/api_user"
 import {
   userStore,
@@ -11,11 +12,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: null,
-    username:null,
-    userPostList: null,
-    isUser:false,
-    userInfo:{}
+    user: {},
+    username: "",
+    userPostList: [],
+    isUser: false,
+    userInfo: {}
   },
 
   /**
@@ -24,101 +25,87 @@ Page({
   onLoad(options) {
     let username = options.username
     this.setData({
-      username:username
+      username: username
     })
     userStore.onState("userInfo", this.isLoginUser())
+  },
+  onShow(){
+    let username = this.data.username
     this.getUserData(username)
   },
-  editInfoClick(){
+
+  //点击编辑
+  editInfoClick() {
     wx.navigateTo({
       url: '/pages/user-edit/index'
     })
   },
+  //判断是否是登录用户
+  isLoginUser() {
+    return (res) => {
+      this.setData({
+        userInfo: res
+      })
+      if (res.username == this.data.username) this.setData({
+        isUser: true
+      })
+    }
+  },
 
-  isLoginUser(){
-    return (res)=>{
-      if(res.id){
-        this.setData({
-          userInfo:res
-        })
-        if(res.username == this.data.username)
-        this.setData({
-          isUser: true
-        })
-      }
-      }
-    },
-    
-    
+  //获取用户信息
   getUserData(name) {
     getUserInfoByUserName(name).then(res => {
-        this.setData({
-          user: res.user[0]
-        })
-        let id = this.data.user.id
-        getUserPostInfoById(id).then(res=>{
-          if(res.posts){
-            res.posts.forEach(item=>{
-              item.nickname = this.data.user.nickname
-              item.headPortrait = this.data.user.headPortrait
-              item.username = this.data.user.username
-            })
-            let postsList = res.posts.reverse()
-            this.setData({
-              userPostList: postsList
-            })
-          }
-        })
+      this.setData({
+        user: res.user[0]
+      })
+      let id = res.user[0].id
+      this.getPostListData(id,1)
     })
-},
+  },
+
+  //获取用户帖子
+  async getPostListData(id, page) {
+    wx.showNavigationBarLoading({
+      success: (res) => {},
+    })
+    let res = await getUserPostInfoById(id, page)
+    if(res.posts){
+      res.posts.forEach(item=>{
+        item.nickname = this.data.user.nickname
+        item.headPortrait = this.data.user.headPortrait
+        item.username = this.data.user.username
+      })
+    }
+    let newData = this.data.userPostList
+    if (newData.length == res.total) {
+      wx.hideNavigationBarLoading()
+      return
+    }
+    page === 1 ? (newData = res.posts) : (newData = newData.concat(res.posts))
+    this.setData({
+      userPostList: newData,
+    })
+    wx.hideNavigationBarLoading()
+    if (page === 1) {
+      wx.stopPullDownRefresh()
+    }
+  },
 
 
-/**
- * 生命周期函数--监听页面初次渲染完成
- */
-onReady() {
+  //下拉刷新
+  onPullDownRefresh() {
+    this.setData({
+      userPostList: [],
+    })
+    let id = this.data.user.id
+    this.getPostListData(id, 1)
+  },
 
-},
+  //上拉加载
+  onReachBottom() {
+    let id = this.data.user.id
+    let page = Math.ceil((this.data.userPostList.length) / 10) + 1
+    this.getPostListData(id, page)
+  },
 
-/**
- * 生命周期函数--监听页面显示
- */
-onShow() {
-
-},
-
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide() {
-
-},
-
-/**
- * 生命周期函数--监听页面卸载
- */
-onUnload() {
-  userStore.offState("userInfo", this.isLoginUser())
-},
-
-/**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-onPullDownRefresh() {
-
-},
-
-/**
- * 页面上拉触底事件的处理函数
- */
-onReachBottom() {
-
-},
-
-/**
- * 用户点击右上角分享
- */
-onShareAppMessage() {
-
-}
 })

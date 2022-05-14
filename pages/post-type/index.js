@@ -11,35 +11,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    postList:[],
+    postList: [],
     userInfo: {},
     hasMore: true,
-    isTypePage:true,
-    total:0,
-    type:""
+    isTypePage: true,
+    total: 0,
+    type: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    userStore.onState("userInfo", this.getUserHandler())
+    userStore.onState("userInfo", this.getUserHandler)
     let type = options.type
     this.setData({
-      type:type
+      type: type
     })
-    this.getPostList(1,type)
+    this.getPostList(1, type)
   },
 
 
-  async getPostList(page,type) {
+  async getPostList(page, type) {
     wx.showNavigationBarLoading({
       success: (res) => {},
     })
-    try{
-      const res = await getPostByType(page,type)
+    try {
+      const res = await getPostByType(page, type)
       this.setData({
-        total:res.total
+        total: res.total
       })
       if (this.data.postList.length == res.total) {
         wx.hideNavigationBarLoading()
@@ -54,19 +54,15 @@ Page({
       if (page === 1) {
         wx.stopPullDownRefresh()
       }
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
   },
 
-  getUserHandler() {
-    return (res) => {
-      if (res) {
-        this.setData({
-          userInfo: res
-        })
-      }
-    }
+  getUserHandler(res) {
+    this.setData({
+      userInfo: res
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -93,7 +89,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    userStore.offState("userInfo", this.getUserHandler())
+    userStore.offState("userInfo", this.getUserHandler)
   },
 
   /**
@@ -103,8 +99,8 @@ Page({
     this.setData({
       postList: [],
     })
-    this.getPostList(1,this.data.type)
-    
+    this.getPostList(1, this.data.type)
+
   },
 
   /**
@@ -112,7 +108,7 @@ Page({
    */
   onReachBottom() {
     let page = Math.ceil((this.data.postList.length) / 10) + 1
-    this.getPostList(page,this.data.type)
+    this.getPostList(page, this.data.type)
   },
 
   /**
