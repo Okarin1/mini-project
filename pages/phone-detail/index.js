@@ -52,15 +52,13 @@ Page({
 
   //获取评论数据
   async getCommentData(id, page) {
-    wx.showNavigationBarLoading({
-      success: (res) => {},
-    })
+    wx.showNavigationBarLoading()
     let res = await getPhoneCommentList(id, page)
     this.setData({
       commentNum: res.Commentlist.total
     })
     let newData = this.data.commentList
-    if (newData.length == res.Commentlist.total) {
+    if (newData.length == res.Commentlist.total && page != 1) {
       wx.hideNavigationBarLoading()
       return
     }
@@ -76,9 +74,6 @@ Page({
 
   //下拉刷新
   onPullDownRefresh() {
-    this.setData({
-      commentList: [],
-    })
     let spuId = this.data.spuId
     this.getCommentData(spuId, 1)
   },
