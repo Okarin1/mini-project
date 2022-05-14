@@ -10,15 +10,15 @@ export function getUserInfoById(id) {
   return myRequest.get(`/api/giao/user/info/${id}`)
 }
 
-export function getUserPostInfoById(id) {
-  return myRequest.get(`/api/giao/user/posts/info1/${id}`)
+export function getUserPostInfoById(userId,page,limit = 10) {
+  return myRequest.post("/api/giao/user/posts/info1/",{userId,page,limit})
 }
 
 export function getUserInfoByUserName(username) {
   return myRequest.get(`/api/giao/user/info1/${username}`)
 }
 
-export function updateUserInfoById({id,username,nickname,autograph,age,birthday, gender}) {
+export function updateUserInfoById({id,username,nickname,autograph,age,birthday, gender,headPortrait}) {
   return myRequest.post('/api/giao/user/update', {
     id,
     nickname,
@@ -26,7 +26,8 @@ export function updateUserInfoById({id,username,nickname,autograph,age,birthday,
     autograph,
     age,
     birthday,
-    gender
+    gender,
+    headPortrait
   })
 }
 
