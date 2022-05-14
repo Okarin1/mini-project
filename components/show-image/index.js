@@ -7,9 +7,11 @@ Component({
     attached: function() {
       let image = this.properties.image
      let imageList = JSON.parse(image)
+     if(imageList[0]){
       this.setData({
         mediaList:imageList
       })
+     }
     }
   },
     
