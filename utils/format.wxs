@@ -1,67 +1,86 @@
 function formatCount(count) {
-  var counter = parseInt(count)
+  var counter = parseInt(count);
   if (counter > 100000000) {
-    return (counter / 100000000).toFixed(1) + "亿"
+    return (counter / 100000000).toFixed(1) + "亿";
   } else if (counter > 10000) {
-    return (counter / 10000).toFixed(1) + "万"
+    return (counter / 10000).toFixed(1) + "万";
   } else {
-    return counter + ""
+    return counter + "";
   }
 }
 
 function formatDuration(duration) {
-  var duration = parseInt(duration / 1000)
-  var minute = Math.floor(duration / 60)
-  var second = duration % 60
-  return padLeftZero(minute) + ":" + padLeftZero(second)
+  var duration = parseInt(duration / 1000);
+  var minute = Math.floor(duration / 60);
+  var second = duration % 60;
+  return padLeftZero(minute) + ":" + padLeftZero(second);
 }
 
 function padLeftZero(str) {
-  return str = str < 10 ? '0' + str : str
-};
+  return (str = str < 10 ? "0" + str : str);
+}
 
 //时间格式化
 function formatDate(time) {
   var date = getDate(time);
   var o = {
-    'Y':date.getFullYear(),
-    'M': date.getMonth() + 1,
-    'd': date.getDate(),
-    'h': date.getHours(),
-    'm': date.getMinutes(),
-    's': date.getSeconds()
+    Y: date.getFullYear(),
+    M: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    m: date.getMinutes(),
+    s: date.getSeconds(),
   };
-  return padLeftZero(o.Y)+ "-" +padLeftZero(o.M)+ "-" + padLeftZero(o.d)
+  return padLeftZero(o.Y) + "-" + padLeftZero(o.M) + "-" + padLeftZero(o.d);
 }
 
 //距离目前时间
 function completeTime(time) {
-	var diff =  getDate().getTime() -  getDate(time).getTime();
-	return diff / 1000 < 60 ? '刚刚' :
-		diff / 1000 / 60 < 60 ? Math.floor(diff / 1000 / 60) + '分钟前' :
-		diff / 1000 / 60 / 60 < 24 ? Math.floor(diff / 1000 / 60 / 60) + '小时前' :
-		diff / 1000 / 60 / 60 / 24 < 7 ? Math.floor(diff / 1000 / 60 / 60 / 24) + '天前' :
-    formatDate(time);
+  var diff = getDate().getTime() - getDate(time).getTime();
+  return diff / 1000 < 60
+    ? "刚刚"
+    : diff / 1000 / 60 < 60
+    ? Math.floor(diff / 1000 / 60) + "分钟前"
+    : diff / 1000 / 60 / 60 < 24
+    ? Math.floor(diff / 1000 / 60 / 60) + "小时前"
+    : diff / 1000 / 60 / 60 / 24 < 7
+    ? Math.floor(diff / 1000 / 60 / 60 / 24) + "天前"
+    : formatDate(time);
 }
 
 //图片头部
-function padHeadImgUrl(url){
-  return 'http://101.43.221.86:8081/upload/' + url
+function padHeadImgUrl(url) {
+  return "http://101.43.221.86:8081/upload/" + url;
 }
 
+
 //性别
-function showGender(gender){
-  if(gender){
-    return gender == "1" ? "男" : "女"
-  }else{
-    return "神秘人"
+function showGender(gender) {
+  if (gender) {
+    return gender == "1" ? "男" : "女";
+  } else {
+    return "神秘人";
   }
 }
 
-var typeMap = ["综合讨论","玩机技巧","好物安利","开箱评测","酷玩夜话"]
-function showPostType(num){
-  var index = parseInt(num) - 1
-  return typeMap[index]
+var typeMap = ["综合讨论", "玩机技巧", "好物安利", "开箱评测", "酷玩夜话"];
+function showPostType(num) {
+  var index = parseInt(num) - 1;
+  return typeMap[index];
+}
+
+//返回星座
+function showHoroscope(time) {
+  var date = getDate(time);
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var horoscope = ["魔羯座","⽔瓶座","双鱼座","白⽺座","⾦⽜座","双⼦座","巨蟹座","狮⼦座","处⼥座","天秤座","天蝎座","射⼿座",];
+  var scope = [22, 20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22]; //
+  var index = month;
+  if (day < scope[month - 1]) {
+    index = index - 1;
+  }
+  return horoscope[index];
 }
 
 // common.js
@@ -70,8 +89,9 @@ module.exports = {
   formatDuration: formatDuration,
   padLeftZero: padLeftZero,
   formatDate: formatDate,
-  completeTime:completeTime,
-  padHeadImgUrl:padHeadImgUrl,
-  showPostType:showPostType,
-  showGender:showGender
-}
+  completeTime: completeTime,
+  padHeadImgUrl: padHeadImgUrl,
+  showPostType: showPostType,
+  showGender: showGender,
+  showHoroscope:showHoroscope
+};
