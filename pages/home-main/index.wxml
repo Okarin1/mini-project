@@ -7,7 +7,7 @@
   <view><text>立即登录，发现更多精彩</text></view>
   <view class="guide-button">
     <van-button bind:click="handleLoginClick" size="small" plain type="info">登录</van-button>
-    <van-button bind:click="handleLoginClick" size="small" type="info">注册</van-button>
+    <van-button bind:click="handleRegisterClick" size="small" type="info">注册</van-button>
   </view>
 </view>
 

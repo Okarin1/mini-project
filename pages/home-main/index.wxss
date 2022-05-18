@@ -38,6 +38,7 @@ page{
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  font-size: 30rpx;
   background-color: #fff;
   border-radius: 20rpx;
   justify-content: space-around;
