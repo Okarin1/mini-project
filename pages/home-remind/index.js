@@ -37,14 +37,14 @@ Page({
           this.getNoticeList(res.id)
         }
 
-        if (this.data.userInfo.id) {
-          setInterval(() => {
-            let pages = getCurrentPages()
-            if ((pages[0].route !== "pages/home-remind/index")&&(this.data.userInfo.id) ) {
-              this.getNoticeList(res.id)
-            }
-          }, 5000)
-        }
+        // if (this.data.userInfo.id) {
+        //   setInterval(() => {
+        //     let pages = getCurrentPages()
+        //     if ((pages[0].route !== "pages/home-remind/index")&&(this.data.userInfo.id) ) {
+        //       this.getNoticeList(res.id)
+        //     }
+        //   }, 5000)
+        // }
       }
     }
   },
@@ -72,10 +72,7 @@ Page({
           index: 2, //tabBar序号，从0开始计数
           text: noticeList.length.toString()
         })
-      }else{
-        wx.removeTabBarBadge({
-          index: 2,
-      })}
+      }
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
     })
