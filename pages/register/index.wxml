@@ -1,0 +1,54 @@
+<!--pages/user-register/index.wxml-->
+<!--pages/login/index.wxml-->
+<view class="login">
+  <view class="text">酷玩账号注册</view>
+  <van-cell-group>
+    <van-field 
+    clearable 
+    label="用户名" 
+    bind:blur="checkUsername"
+    model:value="{{ username }}" 
+    maxlength="{{6}}"
+    error-message="{{errorUsername}}"
+    placeholder="请确认密码"
+    placeholder="请输入用户名" 
+    />
+
+    <van-field 
+    clearable 
+    label="密码" 
+    model:value="{{ password }}" 
+    type="password" 
+    maxlength="{{18}}"
+    bind:blur="checkPassword"
+    error-message="{{errorPassword}}"
+    placeholder="请输入密码" />
+
+    <van-field 
+    clearable label="确认密码" 
+    bind:blur="checkRepassword"
+    model:value="{{ repassword }}" 
+    type="password" 
+    maxlength="{{18}}"
+    error-message="{{errorRepassword}}"
+    placeholder="请确认密码" />
+
+    <van-field 
+    clearable 
+    label="邮箱" 
+    bind:blur="checkEmail"
+    model:value="{{ email }}" 
+    type="email" 
+    error-message="{{errorEmail}}"
+    placeholder="请输入邮箱" />
+
+    <van-field model:value="{{ code }}" type="number" center error-message="{{errorCode}}" clearable label="邮箱验证码" placeholder="请输入邮箱验证码" use-button-slot>
+      <van-button slot="button" size="small" color="#007acc" bind:click="sendCode" disabled="{{buttonFlag}}">
+        <text>{{buttonText}}</text>
+      </van-button>
+    </van-field>
+  </van-cell-group>
+  <view class="button">
+    <van-button color="#007acc" round bind:click="registerClick">注册</van-button>
+  </view>
+</view>
