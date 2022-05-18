@@ -26,7 +26,7 @@
     input-class="textarea"
   />
 
-  <van-uploader file-list="{{ fileList }}" bind:after-read="cacheImage" bind:delete="deleteImage">
+  <van-uploader file-list="{{ fileList }}"  max-count="{{9}}" max-size="{{1048576}}" bind:after-read="cacheImage" bind:delete="deleteImage" >
   </van-uploader>
 
 </van-cell-group>
