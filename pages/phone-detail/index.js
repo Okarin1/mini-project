@@ -1,6 +1,5 @@
 // pages/phone-detail/index.js
 import {
-  getPhoneInfoById,
   getPhoneParamById,
   getPhoneCommentList,
   sendPhoneComment
@@ -16,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phoneInfo: [],
+    phoneInfo: {},
     phoneParam: {},
     commentList: [],
     userInfo: {},
@@ -29,8 +28,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let {id, spuName} = options
+    let phoneInfo = {id,spuName}
     this.setData({
-      spuId: options.spuId
+      phoneInfo,
+      spuId: phoneInfo.id
     })
     let spuId = this.data.spuId
     this.getPhoneData(spuId)
@@ -40,13 +42,10 @@ Page({
 
   // 获取手机的信息和参数
   getPhoneData(id) {
-    Promise.all([getPhoneInfoById(id), getPhoneParamById(id)]).then((res) => {
+    getPhoneParamById(id).then((res) => {
       this.setData({
-        phoneInfo: res[0].skuInfo,
-        phoneParam: res[1].skuAttrAndGroup
+        phoneParam: res.skuAttrAndGroup
       })
-    }).catch(err => {
-      console.log(err)
     })
   },
 

@@ -1,10 +1,10 @@
 <!--pages/phone-detail/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view class="phone-detail">
-  <view class="phone-info" wx:if="{{phoneInfo.spuId}}">
-    <image class="cover" src="{{phoneInfo.skuDefaultImg}}"></image>
+  <view class="phone-info" wx:if="{{phoneInfo.id}}">
+    <image class="cover" src="{{phoneInfo.imageUrl}}"></image>
     <view class="phone-title">
-      <view class="name">{{phoneInfo.skuName}}</view>
+      <view class="name">{{phoneInfo.spuName}}</view>
       <view class="info"><text>{{commentNum}} 讨论</text></view>
     </view>
   </view>
