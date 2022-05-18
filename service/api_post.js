@@ -1,0 +1,2 @@
+import myRequest from "index"
+
