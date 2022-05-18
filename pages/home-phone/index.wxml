@@ -1,15 +1,24 @@
 <!--pages/home-phone/index.wxml-->
 
-<area-header title="今日热门"></area-header>
+<area-header title="今日热门" ></area-header>
 <view class="ranking">
-  <block wx:for="{{ranking}}" wx:key="spuId">
+  <block wx:for="{{ranking}}"  showRight="{{false}}" wx:key="spuId">
     <view class="ranking-item">
       <ranking-item item="{{item}}" index="{{index+1}}"></ranking-item>
     </view>
   </block>
 </view>
 
-
+<view wx:if="{{followList.length != 0 }}">
+  <area-header title="我的关注" bind:click="showMoreFollow"></area-header>
+  <view class="follow-list">
+    <block wx:for="{{followList}}" wx:key="postsId">
+    <view class="follow-item">
+      <phone-list-item item="{{item}}" bindtap="showPhoneDetail" data-info="{{item}}"></phone-list-item>
+    </view>
+  </block>
+  </view>
+</view>
 
 <view class="brand">
   <area-header title="品牌榜" showRight="{{false}}"></area-header>

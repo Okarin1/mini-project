@@ -10,3 +10,14 @@ page{
 .ranking-item:nth-child(-n+3){
   color: red !important;
 }
+.follow-list{
+  display: flex;
+  flex-flow: row wrap;
+  background-color: #fff;
+  border-radius: 15rpx;
+  padding: 20rpx;
+}
+.follow-item{
+  width: 50%;
+  
+}

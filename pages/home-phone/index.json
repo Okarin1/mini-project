@@ -2,6 +2,7 @@
   "usingComponents": {
     "area-header":"../../components/area-header/index",
     "brand-list-item":"../../components/brand-list-item/index",
-    "ranking-item":"../../components/ranking-item"
+    "ranking-item":"../../components/ranking-item",
+    "phone-list-item":"../../components/phone-list-item"
   }
 }
