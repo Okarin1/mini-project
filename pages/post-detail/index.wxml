@@ -5,7 +5,7 @@
 </van-cell-group>
 <view class="item" wx:if="{{postInfo.postsId}}">
   <view class="user">
-    <image class="user-image" bindtap="showUserInfo" src="{{format.padHeadImgUrl(postInfo.headPortrait)}}"></image>
+    <image class="user-image" bindtap="showUserInfo" src="{{postInfo.headPortrait}}"></image>
     <view>
       <view class="user-name" bindtap="showUserInfo">{{postInfo.nickname}}</view>
       <view class="post-time">{{format.completeTime(postInfo.createDate)}}</view>
