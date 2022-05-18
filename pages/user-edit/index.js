@@ -10,10 +10,13 @@ Page({
     userInfo: {},
     nickname: "",
     autograph: "",
+    date: new Date().getTime(),
+    minDate: new Date(1900, 0, 1).getTime(),
     fileList: [],
     showNameEdit: false,
     showAutographEdit: false,
     showHeadEdit: false,
+    showGenderEdit:false
   },
 
   /**
@@ -97,8 +100,7 @@ Page({
 
   //更新资料
   updateInfo() {
-    let username = this.data.userInfo.username;
-    let password = this.data.userInfo.password;
+    let { username, password } = this.data.userInfo;
     userStore.dispatch("getUserDataAction", username, password);
   },
 
@@ -115,13 +117,13 @@ Page({
       showHeadEdit: false,
     });
   },
-  //更换头像
 
-  async updataHead(event) {
+  //更换头像
+  updataHead(event) {
     const { file } = event.detail;
     uploadImage(file.url).then((res) => {
       let id = this.data.userInfo.id;
-      let headPortrait = JSON.parse(res).fileName;
+      let headPortrait = JSON.parse(res).fileurl;
       if (headPortrait) {
         updateUserInfoById({
           id,
@@ -138,6 +140,72 @@ Page({
         });
       }
     });
+  },
+
+  //显示性别编辑
+  showGenderEdit() {
+    this.setData({
+      showGenderEdit: true,
+    });
+  },
+
+  //关闭性别编辑
+  closeGenderEdit() {
+    this.setData({
+      showGenderEdit: false,
+    });
+  },
+  //性别编辑
+  async genderClick(event){
+    const { gender } = event.currentTarget.dataset;
+    let id = this.data.userInfo.id;
+    const res = await updateUserInfoById({
+      id,
+      gender,
+    });
+    if (res.msg == "success") {
+      wx.showToast({
+        title: "更新成功",
+        icon: "none",
+      });
+      this.closeGenderEdit();
+      this.updateInfo();
+    }
+  },
+
+  //显示生日编辑
+  showDateEdit() {
+    this.setData({
+      showDateEdit: true,
+    });
+  },
+
+  //关闭生日编辑
+  closeDateEdit() {
+    this.setData({
+      showDateEdit: false,
+    });
+  },
+  formatDate(date) {
+    date = new Date(date);
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  },
+
+  async dateClick(event) {
+    let birthday =  this.formatDate(event.detail);
+    let id = this.data.userInfo.id;
+    const res = await updateUserInfoById({
+      id,
+      birthday,
+    });
+    if (res.msg == "success") {
+      wx.showToast({
+        title: "更新成功",
+        icon: "none",
+      });
+      this.closeDateEdit();
+      this.updateInfo();
+    }
   },
 
   onUnload() {

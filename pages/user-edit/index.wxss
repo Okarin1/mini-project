@@ -48,3 +48,7 @@
   width: 400rpx;
   height: 400rpx;
 }
+
+.edit-gender{
+  width: 700rpx;
+}

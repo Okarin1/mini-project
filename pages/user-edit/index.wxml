@@ -1,59 +1,74 @@
 <!--pages/user-edit/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <van-cell-group wx:if="{{userInfo.id}}">
-  <van-cell title="编辑个人信息"/>
+  <van-cell title="编辑个人信息" />
+
+  <!-- 修改头像 -->
   <van-cell title="头像" clickable bind:click="showHeadEdit">
     <view slot="right-icon">
-      <image class="user-image" src="{{format.padHeadImgUrl(userInfo.headPortrait)}}"></image>
+      <image class="user-image" src="{{userInfo.headPortrait}}"></image>
     </view>
   </van-cell>
   <van-popup show="{{ showHeadEdit }}" closeable round bind:close="closeHeadEdit">
     <view class="edit-head">
-        <image class="show-image" src="{{format.padHeadImgUrl(userInfo.headPortrait)}}"></image>
+      <image class="show-image" src="{{userInfo.headPortrait}}"></image>
       <van-uploader bind:after-read="updataHead">
         <van-button icon="photo" type="primary">上传图片</van-button>
       </van-uploader>
     </view>
-
   </van-popup>
 
-  <van-cell title="昵称" value="{{userInfo.nickname}}" bind:click="showNameEdit" />
+  <!-- 修改昵称 -->
+  <van-cell title="昵称" clickable value="{{userInfo.nickname}}" bind:click="showNameEdit" />
   <van-popup show="{{ showNameEdit }}" closeable round bind:close="closeNameEdit">
     <view class="edit-nickname">
       <view class="tips"><text>昵称支持2-14个中文字符</text></view>
       <view class="input">
-        <van-field wx:if="{{ userInfo.id }}"  model:value="{{ nickname }}" placeholder="请输入新昵称" />
+        <van-field wx:if="{{ userInfo.id }}" model:value="{{ nickname }}" placeholder="请输入新昵称" />
       </view>
       <view class="button" bindtap="editNameClick">确定</view>
     </view>
   </van-popup>
-  <van-cell title="性别" value="{{format.showGender(userInfo.gender)}}"  />
-  <van-cell title="生日" value="{{format.formatDate(userInfo.birthday)}}"  />
-  <van-cell title="签名" center  bind:click="showAutographEdit">
+
+  <!-- 修改性别 -->
+  <van-cell title="性别" clickable value="{{format.showGender(userInfo.gender)}}" bind:click="showGenderEdit" />
+  <van-popup show="{{ showGenderEdit }}" closeable round bind:close="closeGenderEdit">
+    <view class="edit-gender">
+      <van-cell-group>
+        <van-cell title="男" clickable data-gender="1" bind:click="genderClick" />
+        <van-cell title="女" clickable data-gender="0" bind:click="genderClick" />
+      </van-cell-group>
+    </view>
+
+  </van-popup>
+
+  <!-- 修改生日 -->
+  <van-cell title="生日" value="{{format.formatDate(userInfo.birthday)}}" bind:click="showDateEdit" />
+  <van-popup   show="{{ showDateEdit }}" bind:close="closeDateEdit" position="bottom" round custom-style="height: 40%;">
+  <view class="edit-birthday">
+    <van-datetime-picker type="date" value="{{ date }}" min-date="{{ minDate }}" max-date="{{ date }}" bind:confirm="dateClick" bind:cancel="closeDateEdit" />
+  </view>
+  </van-popup>
+
+
+
+
+  <!-- 修改签名 -->
+  <van-cell title="签名" clickable center bind:click="showAutographEdit">
     <view slot="right-icon" class="autograph">
       <text>{{userInfo.autograph}}</text>
     </view>
   </van-cell>
-  <van-popup show="{{ showAutographEdit }}"  round bind:close="closeAutographEdit" position="bottom" round custom-style="height: 40%;">
-  <van-cell-group>
-  <van-cell title="修改签名"  border="{{false}}">
-    <view slot="right-icon">
-      <van-button disabled="{{!autograph}}" color="#007acc" size="small" round bind:click="autographEditClick">确定</van-button>
-    </view>
-  </van-cell>
+  <van-popup show="{{ showAutographEdit }}"  bind:close="closeAutographEdit" position="bottom" round custom-style="height: 40%;">
+    <van-cell-group>
+      <van-cell title="修改签名" border="{{false}}">
+        <view slot="right-icon">
+          <van-button disabled="{{!autograph}}" color="#007acc" size="small" round bind:click="autographEditClick">确定</van-button>
+        </view>
+      </van-cell>
 
-  <van-field
-    model:value="{{ autograph }}"
-    type="textarea"
-    placeholder="键入你的签名"
-    autosize
-    size = "large"
-    border="{{ false }}"
-    maxlength = "{{50}}"
-    show-word-limit
-    input-class="textarea"
-  />
-</van-cell-group>
-</van-popup>
+      <van-field model:value="{{ autograph }}" type="textarea" placeholder="键入你的签名" autosize size="large" border="{{ false }}" maxlength="{{50}}" show-word-limit input-class="textarea" />
+    </van-cell-group>
+  </van-popup>
 
 </van-cell-group>
