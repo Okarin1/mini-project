@@ -12,7 +12,9 @@
     "pages/post-type/index",
     "pages/my-post/index",
     "pages/phone-detail/index",
-    "pages/phone-list/index"
+    "pages/phone-list/index",
+    "pages/register/index",
+    "pages/my-follow/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -48,6 +50,6 @@
         "selectedIconPath": "assets/images/tabbar/mine_active.png"
       }
     ]
-  },  
+  },
   "sitemapLocation": "sitemap.json"
 }
