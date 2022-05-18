@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: column nowrap;
   padding: 40rpx;
-  background-color: #007acc;
+  background: linear-gradient(180deg,#007acc,#004472);
   color: #fff;
 }
 
@@ -23,13 +23,16 @@
 
 .post-list{
   margin-top: -40rpx;
-  background-color: #f6f6f6;
+  background-color: #fff;
+  min-height: 1000rpx;
   border-radius: 40rpx;
   z-index: 5;
   padding: 20rpx;
 }
-.none-list{
+.empty-list{
   margin: 200rpx 50rpx;
+  text-align: center;
+  z-index: 5;
 }
 
 .edit-button{
@@ -37,4 +40,34 @@
   right: 80rpx;
   top: 80rpx;
   z-index: 5;
+}
+.plus{
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.horoscope{
+  width: 120rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  background-color: #969595a2;
+  border-radius: 25rpx;
+  color: #fff;
+  padding: 8rpx;
+  margin-left: 20rpx;
+}
+
+.gender{
+  width: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  background-color: #969595a2;
+  border-radius: 25rpx;
+  padding: 8rpx;
+}
+.gender-icon{
+  width: 30rpx;
+  height: 30rpx;
 }

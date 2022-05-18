@@ -2,19 +2,33 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 
 <view wx:if="{{user.id}}" class="user-info">
-  <image wx:if="{{user.headPortrait}}" class="image" src="{{format.padHeadImgUrl(user.headPortrait)}}"></image>
+  <image wx:if="{{user.headPortrait}}" class="image" src="{{user.headPortrait}}"></image>
   <view class="name">{{user.nickname}}</view>
   <view class="info"><text>{{user.autograph}}</text></view>
+  <view class="plus">
+    <view class="gender" wx:if="{{user.gender == '1'}}">
+      <image class="gender-icon" src="../../assets/images/icons/male.png"></image>
+    </view>
+    <view class="gender" wx:if="{{user.gender == '0'}}">
+      <image class="gender-icon" src="../../assets/images/icons/female.png"></image>
+    </view>
+    <view class="horoscope">{{format.showHoroscope(user.birthday)}}</view>
+  </view>
 </view>
 
 <view class="edit-button" wx:if="{{isUser}}">
   <van-button bind:click="editInfoClick" icon="edit" type="info" round>编辑资料</van-button>
 </view>
 
-<view class="post-list">
-  <block wx:for="{{userPostList}}" wx:key="postsId" wx:if="{{userPostList.length != 0 }}">
+<view class="post-list" >
+<view wx:if="{{userPostList.length != 0 }}">
+  <block wx:for="{{userPostList}}" wx:key="postsId" >
     <post-item item="{{item}}" userInfo="{{userInfo}}"></post-item>
-    <hr />
+    <van-divider />
   </block>
-  <view wx:if="{{userPostList.length == 0}}" class="none-list">该用户似乎很懒，什么帖子都没有</view>
+</view>
+  <view wx:else class="empty-list">
+    <van-empty description="该用户很懒，还没有帖子">
+    </van-empty>
+  </view>
 </view>

@@ -1,13 +1,7 @@
 // pages/user-info/index.js
-import {
-  getUserInfoByUserName,
-  getUserPostInfoById
-} from "../../service/api_user"
-import {
-  userStore,
-} from '../../store/index'
+import { getUserInfoByUserName, getUserPostInfoById } from "../../service/api_user";
+import { userStore } from "../../store/index";
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -16,96 +10,94 @@ Page({
     username: "",
     userPostList: [],
     isUser: false,
-    userInfo: {}
+    userInfo: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let username = options.username
+    let { username } = options;
     this.setData({
-      username: username
-    })
-    userStore.onState("userInfo", this.isLoginUser())
+      username,
+    });
+    userStore.onState("userInfo", this.isLoginUser);
   },
-  onShow(){
-    let username = this.data.username
-    this.getUserData(username)
+  onShow() {
+    let { username } = this.data;
+    this.getUserData(username);
   },
 
   //点击编辑
   editInfoClick() {
     wx.navigateTo({
-      url: '/pages/user-edit/index'
-    })
+      url: "/pages/user-edit/index",
+    });
   },
   //判断是否是登录用户
-  isLoginUser() {
-    return (res) => {
+  isLoginUser(res) {
+    this.setData({
+      userInfo: res,
+    });
+    if (res.username == this.data.username)
       this.setData({
-        userInfo: res
-      })
-      if (res.username == this.data.username) this.setData({
-        isUser: true
-      })
-    }
+        isUser: true,
+      });
   },
 
   //获取用户信息
   getUserData(name) {
-    getUserInfoByUserName(name).then(res => {
+    getUserInfoByUserName(name).then((res) => {
       this.setData({
-        user: res.user[0]
-      })
-      let id = res.user[0].id
-      this.getPostListData(id,1)
-    })
+        user: res.user[0],
+      });
+      let id = res.user[0].id;
+      this.getPostListData(id, 1);
+    });
   },
 
   //获取用户帖子
   async getPostListData(id, page) {
     wx.showNavigationBarLoading({
       success: (res) => {},
-    })
-    let res = await getUserPostInfoById(id, page)
-    if(res.posts){
-      res.posts.forEach(item=>{
-        item.nickname = this.data.user.nickname
-        item.headPortrait = this.data.user.headPortrait
-        item.username = this.data.user.username
-      })
-    }
-    let newData = this.data.userPostList
+    });
+    let res = await getUserPostInfoById(id, page);
+    if (res.posts) {
+      res.posts.forEach((item) => {
+        let { nickname, headPortrait, username } = this.data.user;
+        let temp = { nickname, headPortrait, username };
+        Object.assign(item, temp);
+      });
+    
+    let newData = this.data.userPostList;
     if (newData.length == res.total) {
-      wx.hideNavigationBarLoading()
-      return
+      wx.hideNavigationBarLoading();
+      return;
     }
-    page === 1 ? (newData = res.posts) : (newData = newData.concat(res.posts))
+    if (page === 1) {
+      newData = res.posts;
+    } else {
+      newData = newData.concat(res.posts);
+    }
     this.setData({
       userPostList: newData,
-    })
-    wx.hideNavigationBarLoading()
+    });
+    wx.hideNavigationBarLoading();
     if (page === 1) {
-      wx.stopPullDownRefresh()
+      wx.stopPullDownRefresh();
     }
-  },
-
-
-  //下拉刷新
-  onPullDownRefresh() {
-    this.setData({
-      userPostList: [],
-    })
-    let id = this.data.user.id
-    this.getPostListData(id, 1)
+  }
   },
 
   //上拉加载
   onReachBottom() {
-    let id = this.data.user.id
-    let page = Math.ceil((this.data.userPostList.length) / 10) + 1
-    this.getPostListData(id, page)
+    let id = this.data.user.id;
+    let page = Math.ceil(this.data.userPostList.length / 10) + 1;
+    this.getPostListData(id, page);
   },
 
-})
+  //注销监听
+  onUnLoad() {
+    userStore.offState("userInfo", this.isLoginUser);
+  },
+});
