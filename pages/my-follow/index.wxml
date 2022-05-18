@@ -1,0 +1,11 @@
+<!--pages/my-follow/index.wxml-->
+<view>
+  <area-header title="我的关注"  showRight="{{false}}"></area-header>
+  <view class="phone-list">
+    <block wx:for="{{phoneList}}" wx:key="postsId">
+    <phone-list-item item="{{item}}" bindtap="showPhoneDetail" data-info="{{item}}"></phone-list-item>
+  </block>
+  </view>
+
+</view>
+

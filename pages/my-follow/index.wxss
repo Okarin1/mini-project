@@ -1,0 +1,9 @@
+/* pages/my-follow/index.wxss */
+page {
+  padding: 0 20rpx;
+}
+.phone-list{
+  background-color: #fff;
+  border-radius: 25rpx;
+  padding: 20rpx;
+}
