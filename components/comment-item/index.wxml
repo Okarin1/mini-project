@@ -1,7 +1,7 @@
 <!--components/comment-item/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view class="item">
-  <image class="user-image" catchtap="handleUserClick" src="{{format.padHeadImgUrl(item.headPortrait)}}"></image>
+  <image class="user-image" catchtap="handleUserClick" src="{{item.headPortrait}}"></image>
   <view class="content">
     <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
     <view class="comment-content"><text user-select>{{item.userComment}}</text></view>

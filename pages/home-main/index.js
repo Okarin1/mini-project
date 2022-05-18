@@ -1,5 +1,4 @@
 // pages/home-main/index.js
-import Dialog from "../../miniprogram_npm/@vant/weapp/dialog/dialog";
 import { getBanner, getRemmedPost } from "../../service/api_home";
 import { queryRect } from "../../utils/helper";
 import { userStore } from "../../store/index";
@@ -18,7 +17,7 @@ Page({
     this.getPageData();
     userStore.onState("userInfo", this.getUserHandler);
   },
-  onShow(){
+  onShow() {
     this.getPostList(1);
   },
   getPageData() {
@@ -36,21 +35,23 @@ Page({
     try {
       const res = await getRemmedPost(page);
       let newData = this.data.recommendPostList;
-      if (newData.length == res.total && page != 1) {
+      if (newData) {
+        if (newData.length == res.total && page != 1) {
+          wx.hideNavigationBarLoading();
+          return;
+        }
+        if (page === 1) {
+          newData = res.list;
+        } else {
+          newData = newData.concat(res.list);
+        }
+        this.setData({
+          recommendPostList: newData,
+        });
         wx.hideNavigationBarLoading();
-        return;
-      }
-      if (page === 1) {
-        newData = res.list;
-      } else {
-        newData = newData.concat(res.list);
-      }
-      this.setData({
-        recommendPostList: newData,
-      });
-      wx.hideNavigationBarLoading();
-      if (page === 1) {
-        wx.stopPullDownRefresh();
+        if (page === 1) {
+          wx.stopPullDownRefresh();
+        }
       }
     } catch (error) {
       console.log(error);
@@ -58,15 +59,9 @@ Page({
   },
 
   getUserHandler(res) {
-    if (res) {
-      this.setData({
-        userInfo: res,
-      });
-      this.setData({
-        recommendPostList: [],
-      });
-      this.getPostList(1);
-    }
+    this.setData({
+      userInfo: res,
+    });
   },
 
   addPostClick() {
@@ -77,16 +72,15 @@ Page({
         url: "/pages/send-post/index?id=" + id,
       });
     } else {
-      Dialog.confirm({
-        message: "请先登录再进行操作",
-      })
-        .then(() => {
-          wx.navigateTo({
-            url: "/pages/login/index",
-          });
-        })
-        .catch(() => {
-          // on cancel
+        wx.showModal({
+          content: "请先登录再进行操作",
+          success: (res) => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: "/pages/login/index",
+              });
+            }
+          },
         });
     }
   },
@@ -104,6 +98,11 @@ Page({
       url: "/pages/login/index",
     });
   },
+  handleRegisterClick() {
+    wx.navigateTo({
+      url: "/pages/register/index",
+    });
+  },
 
   handleSearchClick() {
     console.log("clicked");
@@ -117,6 +116,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.setData({
+      recommendPostList: []
+    })
     this.getPostList(1);
   },
 

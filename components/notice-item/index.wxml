@@ -2,7 +2,7 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view bindtap="handleNoticeClick" class="notice">
   <view class="user">
-    <image class="user-image" catchtap="handleUserClick" src="{{format.padHeadImgUrl(item.headportrait)}}"></image>
+    <image class="user-image" catchtap="handleUserClick" src="{{item.headportrait}}"></image>
     <view>
       <view class="notice-info">
         <view class="notice-content">

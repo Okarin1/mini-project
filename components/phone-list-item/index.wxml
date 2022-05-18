@@ -1,6 +1,7 @@
 <!--components/phone-list-item/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
   <view class="item">
-    <image class="phone-image" src="{{item.imageUrl}}"></image>
+    <image wx:if="{{item.imageUrl}}" class="phone-image" src="{{item.imageUrl}}"></image>
+    <image wx:if="{{item.image}}" class="phone-image" src="{{item.image}}"></image>
     <view class="phone-name" >{{item.spuName}}</view>
   </view>

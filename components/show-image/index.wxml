@@ -1,6 +1,6 @@
 <!--components/show-image/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
-<view>
+<view class="content">
   <view class="{{mediaList.length > 1 ? 'items' : 'item'}}">
     <block wx:for="{{mediaList}}" wx:key="index">
       <!-- 一张图片 -->
@@ -8,7 +8,7 @@
       bindload="oneImageLoad" 
       src="{{format.padHeadImgUrl(item)}}" 
       mode="{{isHeightMode ? 'heightFix' : 'widthFix'}}" 
-      style="height: {{isHeightMode ? '700rpx' : ''}}">
+      style="height: {{isHeightMode ? '680rpx' : ''}}">
       </image>
       <!-- 多张图片 -->
       <view wx:else class="album">

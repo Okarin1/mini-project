@@ -1,7 +1,7 @@
 <!--components/user-list-item/index.wxml-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
   <view class="user" bindtap="handleUserClick">
-    <image class="user-image" src="{{format.padHeadImgUrl(item.headPortrait)}}"></image>
+    <image class="user-image" src="{{item.headPortrait}}"></image>
     <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
   </view>
 

@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   height: 200rpx;
+  padding: 0 20rpx;
 }
 
 .user-image {

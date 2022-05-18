@@ -10,10 +10,11 @@
 .phone-image {
   width: 80rpx;
   height: 80rpx;
+  border-radius: 15rpx;
 }
 
 .phone-name{
   margin-left: 20rpx;
   font-weight: 600;
-  font-size: 29rpx;
+  font-size: 28rpx;
 }
