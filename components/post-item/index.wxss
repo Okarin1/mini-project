@@ -1,5 +1,6 @@
 /* components/post-item/index.wxss */
 .item{
+  position: relative;
   background-color: #fff;
   margin: 0 0 25rpx 0;
   border-radius: 15rpx;
@@ -41,7 +42,9 @@
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
   -webkit-line-clamp: 3; /** 显示的行数 **/
 }
-
+.image-content{
+  overflow: hidden;
+}
 
 
 .post-type{
@@ -67,3 +70,14 @@
    border: none !important;
    height: 60rpx;
  }
+
+ .delete{
+   position:absolute;
+   right: 20rpx;
+  top:20rpx;
+
+ }
+ .delete button{
+  border: none !important;
+  height: 60rpx;
+}
