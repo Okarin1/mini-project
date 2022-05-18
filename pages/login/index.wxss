@@ -1,19 +1,23 @@
 /* pages/login/index.wxss */
 .login{
+  text-align: center;
   height: 200rpxs;
   display: flex;
   flex-flow: column nowrap;
   margin: 50rpx 0;
 }
 .text{
-  text-align: center;
   font-size: 40rpx;
   margin-bottom: 50rpx;
 }
 .button{
   margin-top: 30rpx;
-  text-align: center;
 }
 .button button{
   width: 500rpx;
+}
+.register-text{
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: #007acc;
 }
