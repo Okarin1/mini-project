@@ -10,7 +10,7 @@
   flex-flow: row nowrap;
   height: 300rpx;
   padding: 50rpx 30rpx;
-  background-color: #007acc;
+  background-color: #888;
   color: #fff;
 }
 
@@ -35,7 +35,11 @@
 }
 
 .phone-info .info {
-  margin: 20rpx 0 40rpx 0;
+  width: 400rpx;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40rpx 0 40rpx 0;
   font-size: 30rpx;
   font-weight: 600;
 }

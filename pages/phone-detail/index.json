@@ -8,6 +8,7 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "comment-item":"../../components/comment-item",
-    "send-comment":"../../components/send-comment"
+    "send-comment":"../../components/send-comment",
+    "van-button": "@vant/weapp/button/index"
   }
 }

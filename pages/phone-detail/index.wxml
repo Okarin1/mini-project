@@ -2,10 +2,12 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view class="phone-detail">
   <view class="phone-info" wx:if="{{phoneInfo.id}}">
-    <image class="cover" src="{{phoneInfo.imageUrl}}"></image>
+    <image class="cover" wx:if="{{decript}}" src="{{decript}}"></image>
     <view class="phone-title">
       <view class="name">{{phoneInfo.spuName}}</view>
-      <view class="info"><text>{{commentNum}} 讨论</text></view>
+      <view class="info"><text>{{commentNum}} 讨论</text>
+        <van-button size="small" type="info" plain="{{isFollow}}" bind:click="followClick">{{followText}}</van-button>
+      </view>
     </view>
   </view>
 
@@ -25,10 +27,10 @@
           <block wx:for="{{commentList}}" wx:key="id">
             <comment-item item="{{item}}" />
           </block>
-          <view class="send-comment">
+        </view>
+        <view class="send-comment">
             <send-comment title="写评价" bind:click="sendComment" userInfo="{{userInfo}}" />
           </view>
-        </view>
       </van-tab>
     </van-tabs>
   </view>
