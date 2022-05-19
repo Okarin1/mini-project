@@ -3,14 +3,10 @@
 <view bindtap="handleNoticeClick" class="notice">
   <view class="user">
     <image class="user-image" catchtap="handleUserClick" src="{{item.headportrait}}"></image>
-    <view>
-      <view class="notice-info">
-        <view class="notice-content">
-          <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
-          <view class="nocice-type">{{item.typee}}了你的帖子</view>
-        </view>
-        <view class="post-time">{{format.completeTime(item.createDate)}}</view>
-      </view>
-    </view>
+  </view>
+  <view class="notice-info">
+    <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
+    <view class="post-time">{{format.completeTime(item.createDate)}}</view>
+    <view class="nocice-content">回复了你的帖子：<text>{{item.userComment}}</text></view>
   </view>
 </view>
