@@ -4,7 +4,7 @@
   <view class="content">
   <view class="name">{{item.spuName}}</view>
   </view>
-  <view class="arrow">
+  <view class="arrow" wx:if="{{showRight}}">
     <i class="arrow-right"></i>
   </view>
 </view>

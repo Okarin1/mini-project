@@ -11,6 +11,10 @@ Component({
     item: {
       type: Object,
       value: {}
+    },
+    showRight: {
+      type: Boolean,
+      value: true
     }
   },
 
