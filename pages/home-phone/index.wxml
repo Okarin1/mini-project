@@ -4,7 +4,7 @@
 <view class="ranking">
   <block wx:for="{{ranking}}"  showRight="{{false}}" wx:key="spuId">
     <view class="ranking-item">
-      <ranking-item item="{{item}}" index="{{index+1}}"></ranking-item>
+      <ranking-item item="{{item}}" index="{{index+1}}" bindtap="showPhoneDetail" data-info="{{item}}"></ranking-item>
     </view>
   </block>
 </view>
