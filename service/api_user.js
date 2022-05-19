@@ -68,10 +68,10 @@ export function getNoticeById(id) {
   return myRequest.get(`/api/giao/user/commentorpostsnotice/getNotice/${id}`);
 }
 
-export function deleteNoticeById(id) {
-  return myRequest.post(`/api/giao/user/commentorpostsnotice/deleteNotice/${id}`);
+export function deleteThumbsNoticeById(id) {
+  return myRequest.post(`/api/giao/user/commentorpostsnotice/deleteNotice/${id}/1`);
 }
 
 export function deletePostByPostId(postsIds) {
-  return myRequest.post("/api/giao/user/posts/delete", [postsIds]);
+  return myRequest.post("/api/giao/user/posts/delete", {postsIds});
 }

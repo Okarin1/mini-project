@@ -13,7 +13,7 @@ export function getRankingList() {
 }
 
 export function getPhoneInfoById(spuId) {
-  return myRequest.get(`/api/product/skuinfo/info/${spuId}`,)
+  return myRequest.get(`/api/product/spuinfodesc/info/${spuId}`,)
 }
 
 export function getPhoneParamById(spuId) {
@@ -26,4 +26,16 @@ export function getPhoneCommentList(phone_id,page,queryby = "create_date",limit 
 
 export function sendPhoneComment(phoneId,userId,userComment){
   return myRequest.post("/api/giao/user/comment/save",{phoneId,userId,userComment})
+}
+
+export function checkUserFollow(spuId,userId){
+  return myRequest.post("/api/giao/user/userfollow/checkFollow",{spuId,userId})
+}
+
+export function followPhone(spuId,userId){
+  return myRequest.post("/api/giao/user/userfollow/save",{spuId,userId})
+}
+
+export function searchPhone(name){
+  return myRequest.get(`/api/product/spuinfo/search/${name}`)
 }
