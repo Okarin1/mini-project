@@ -55,7 +55,8 @@ Page({
   },
 
   deletePost(event) {
-    let { postid } = event.currentTarget.dataset;
+    const postid = [];
+    postid.push(event.currentTarget.dataset.postid)
     wx.showModal({
       title: "提示",
       content: "确定删除该帖子？",
