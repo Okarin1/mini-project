@@ -1,18 +1,29 @@
 <!--pages/home-remind/index.wxml-->
 <view>
-<view class="header">
-  <area-header title="我的通知" showRight="{{false}}"></area-header>
-</view>
- 
-  <view wx:if="{{noticeList.length != 0}}" class="notice-list">
-    <block wx:for="{{noticeList}}" wx:key="index">
-      <notice-item item="{{item}}"></notice-item>
-    </block>
+  <view class="header">
+    <area-header title="我的通知" showRight="{{false}}"></area-header>
   </view>
 
-  <view wx:else class="empty-notice">
-    <van-empty description="没有新的通知">
-       <van-button wx:if="{{!userInfo.id}}" color="#007acc" bind:click="handleLoginClick" round>点击登录</van-button>
+  <view wx:if="{{userInfo.id}}">
+    <van-cell-group>
+      <van-cell bind:click="deleteNotice" title="收到的点赞" center clickable size="large">
+        <van-icon slot="icon" name="good-job" size="40rpx" color="#007acc" />
+        <van-icon wx:if="{{thumbsNoticeList.length}}" slot="right-icon" info="{{thumbsNoticeList.length}}" />
+      </van-cell>
+    </van-cell-group>
+    <View class="comment-list">
+      <block wx:for="{{commentNoticeList}}" wx:key="noticeId">
+        <notice-item item="{{item}}"></notice-item>
+      </block>
+    </View>
+
+  </view>
+
+
+
+  <view class="empty-notice" wx:else>
+    <van-empty description="登录发现更多精彩">
+      <van-button color="#007acc" bind:click="handleLoginClick" round>点击登录</van-button>
     </van-empty>
   </view>
 </view>

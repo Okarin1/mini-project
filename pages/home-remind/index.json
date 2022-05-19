@@ -5,7 +5,10 @@
   "usingComponents": {
     "area-header":"../../components/area-header/index",
     "notice-item":"../../components/notice-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-button": "@vant/weapp/button/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "van-empty": "@vant/weapp/empty/index",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

@@ -2,15 +2,6 @@
 .header{
   padding: 0 20rpx;
 }
-.notice-list{
-  margin-top: 30rpx;
-}
-
-.info{
-  color: #999;
-  font-size: 25rpx;
-}
-
-.empty-notice{
-  text-align: center;
+.comment-list{
+  margin-top: 20rpx;
 }

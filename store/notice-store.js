@@ -1,39 +1,30 @@
-import {
-  EventStore
-} from '../event-store/index'
+import { EventStore } from "../event-store/index";
 
-import {
-  getNoticeById,
-  deleteNoticeById
-} from "../../service/api_user"
+import { getNoticeById, deleteNoticeById } from "../service/api_user";
 
-const userStore = new EventStore({
-      state: {
-        noticeList: {}
-      },
-      actions: {
-        getUserDataAction(ctx, username, password) {
-          getUserInfo(username, password).then(res => {
-            if(res.code == '0'){
-              ctx.userInfo = res["用户信息"]
-            }else{
-              wx.showToast({
-                title: "登录失败，用户名或密码错误",
-                icon: 'none',
-                duration: 2000
-              })
-            }
-          }).catch(err =>{
-            wx.showToast({
-              title: err,
-              icon: 'error',
-              duration: 2000
-            })
-          })
-        },
+const noticeStore = new EventStore({
+  state: {
+    commentNoticeList: [],
+    thumbsNoticeList: [],
+    noticeList: [],
+  },
+  actions: {
+    getNoticeDataAction(ctx, id, username) {
+      getNoticeById(id).then((res) => {
+        if ((res.msg = "success")) {
+          let commentNoticeList = res.postsCommentNotice.filter((res) => {
+            return res.username != username;
+          });
+          ctx.commentNoticeList = commentNoticeList;
+          let thumbsNoticeList = res.thumbsNotice.filter((res) => {
+            return res.username != username;
+          });
+          ctx.thumbsNoticeList = thumbsNoticeList;
+          ctx.noticeList = commentNoticeList.concat(thumbsNoticeList);
         }
-      })
+      });
+    },
+  },
+});
 
-    export {
-      userStore
-    }
+export { noticeStore };
