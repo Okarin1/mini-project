@@ -42,7 +42,7 @@ Page({
       const res = await this.getPostImgUrl(fileList);
       res[0] && (image = JSON.stringify(res));
     }
-    this.postSend(id, type, article, image)
+    this.postSend(id, type, article, image);
   },
 
   postSend(id, type, article, image) {
@@ -67,7 +67,7 @@ Page({
           uploadImage(item.url).then((res) => {
             if ((JSON.parse(res).msg = "success")) {
               resolve(JSON.parse(res).fileName);
-            }else{
+            } else {
               wx.hideLoading();
               wx.showToast({
                 title: "请检查图片",
