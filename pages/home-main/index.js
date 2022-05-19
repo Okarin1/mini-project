@@ -105,7 +105,9 @@ Page({
   },
 
   handleSearchClick() {
-    console.log("clicked");
+    wx.navigateTo({
+      url: "/pages/search-detail/index",
+    });
   },
 
   onUnload() {

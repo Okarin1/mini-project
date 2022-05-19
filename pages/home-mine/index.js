@@ -1,5 +1,5 @@
 // pages/home-mine/index.js
-import { userStore,followStore } from "../../store/index";
+import { userStore, followStore, noticeStore } from "../../store/index";
 import { getUserPostInfoById } from "../../service/api_user";
 
 Page({
@@ -9,7 +9,7 @@ Page({
   data: {
     userInfo: {},
     postsNum: 0,
-    followList:[],
+    followList: [],
   },
 
   /**
@@ -17,14 +17,16 @@ Page({
    */
   onLoad(options) {
     userStore.onState("userInfo", this.getUserHandler);
+    noticeStore.onState("noticeList", this.setNoticeNum);
+    followStore.onState("followList", this.getFollowNum);
   },
 
   onShow() {
-    let { id } = this.data.userInfo;
-    if(id){
-      this.getMyPostsNum(id,1)
+    let { id, username } = this.data.userInfo;
+    if (id && username) {
+      noticeStore.dispatch("getNoticeDataAction", id, username);
       followStore.dispatch("getFollowDataAction", id);
-      followStore.onState("followList",this.getFollowNum)
+      this.getMyPostsNum(id, 1);
     }
   },
 
@@ -35,24 +37,37 @@ Page({
   },
 
   getMyPostsNum(id) {
-    if (id) {
-      getUserPostInfoById(id, 1).then((res) => {
-        if (res.posts) {
-          this.setData({
-            postsNum: res.total,
-          });
-        } else {
-          this.setData({
-            postsNum: 0,
-          });
-        }
-      });
-    }
+    getUserPostInfoById(id, 1).then((res) => {
+      if (res.posts) {
+        this.setData({
+          postsNum: res.total,
+        });
+      } else {
+        this.setData({
+          postsNum: 0,
+        });
+      }
+    });
   },
+
   getFollowNum(res) {
     this.setData({
       followList: res,
     });
+  },
+
+  setNoticeNum(res) {
+    if (res.length != 0) {
+      //设置角标
+      wx.setTabBarBadge({
+        index: 2, //tabBar序号，从0开始计数
+        text: res.length.toString(),
+      });
+    } else {
+      wx.removeTabBarBadge({
+        index: 2,
+      });
+    }
   },
 
   handleLoginClick() {
@@ -67,7 +82,7 @@ Page({
       url: "/pages/my-post/index?userInfo=" + userInfo,
     });
   },
-  showMyFollow(){
+  showMyFollow() {
     wx.navigateTo({
       url: "/pages/my-follow/index",
     });
@@ -86,6 +101,9 @@ Page({
       postsNum: 0,
     });
     followStore.setState("followList", []);
+    noticeStore.setState("noticeList", []);
+    noticeStore.setState("thumbsNoticeList", []);
+    noticeStore.setState("commentNoticeList", []);
   },
 
   onUnload() {
