@@ -44,7 +44,7 @@ export function getUserPostInfoById(userId, page, limit = 10) {
 }
 
 export function getFollowInfoById(userId) {
-  return myRequest.post("/api/giao/user/userfollow/findUsersPhoneBySpu", { userId});
+  return myRequest.post("/api/giao/user/userfollow/findUsersPhoneBySpu", {userId});
 }
 
 export function getUserInfoByUserName(username) {
@@ -72,6 +72,10 @@ export function deleteThumbsNoticeById(id) {
   return myRequest.post(`/api/giao/user/commentorpostsnotice/deleteNotice/${id}/1`);
 }
 
+export function deleteCommentNoticeById(id) {
+  return myRequest.post(`/api/giao/user/commentorpostsnotice/deleteNotice/${id}/2`);
+}
+
 export function deletePostByPostId(postsIds) {
-  return myRequest.post("/api/giao/user/posts/delete", {postsIds});
+  return myRequest.post("/api/giao/user/posts/delete", [postsIds]);
 }
