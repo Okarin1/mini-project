@@ -6,7 +6,7 @@
 <input type="text" model:value="{{ comment }}" />
 <van-popup show="{{ show }}" bind:close="onClose" position="bottom" round custom-style="height: 40%;">
   <van-cell-group>
-  <van-cell title="回复"  border="{{false}}">
+  <van-cell title="{{title}}"  border="{{false}}">
     <view slot="right-icon">
       <van-button disabled="{{!message}}" color="#007acc" size="small" round bind:click="sendClick">发布</van-button>
     </view>
@@ -15,7 +15,7 @@
   <van-field
     model:value="{{ message }}"
     type="textarea"
-    placeholder="回复帖子"
+    placeholder="分享你的想法"
     autosize
     size = "large"
     border="{{ false }}"
