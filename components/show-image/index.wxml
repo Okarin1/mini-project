@@ -5,14 +5,16 @@
     <block wx:for="{{mediaList}}" wx:key="index">
       <!-- 一张图片 -->
       <image wx:if="{{mediaList.length == 1}}"  
+      catchtap="handleImageClick"
       bindload="oneImageLoad" 
       src="{{format.padHeadImgUrl(item)}}" 
+      data-src="{{format.padHeadImgUrl(item)}}"
       mode="{{isHeightMode ? 'heightFix' : 'widthFix'}}" 
       style="height: {{isHeightMode ? '680rpx' : ''}}">
       </image>
       <!-- 多张图片 -->
       <view wx:else class="album">
-          <image class="image" src="{{format.padHeadImgUrl(item)}}" ></image>
+          <image class="image" src="{{format.padHeadImgUrl(item)}}"  catchtap="handleImageClick"  data-src="{{format.padHeadImgUrl(item)}}"></image>
       </view>
     </block>
   </view>

@@ -38,6 +38,17 @@ Component({
     oneImageLoad(e) {
       const { width , height } = e.detail
       height >= width && this.setData({ isHeightMode: true })
+    },
+    handleImageClick(event){
+      const {src} = event.currentTarget.dataset
+      let imgList = this.data.mediaList.map(res=>{
+        return  "http://101.43.221.86:8081/upload/" + res;
+      })
+      //图片预览
+      wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
+      })
     }
   }
 })
