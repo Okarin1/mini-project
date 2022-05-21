@@ -2,7 +2,7 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 
 <view wx:if="{{user.id}}" class="user-info">
-  <image wx:if="{{user.headPortrait}}" class="image" src="{{user.headPortrait}}"></image>
+  <image wx:if="{{user.headPortrait}}" class="image" src="{{user.headPortrait}}" bindtap="handleImageClick" data-image="{{user.headPortrait}}"></image>
   <view class="name">{{user.nickname}}</view>
   <view class="info"><text>{{user.autograph}}</text></view>
   <view class="plus">
@@ -21,14 +21,21 @@
 </view>
 
 <view class="post-list" >
-<view wx:if="{{userPostList.length != 0 }}">
+<view class="follow-area" wx:if="{{followList.length > 0}}">
+  <follow-area title="数码关注" followList="{{followList}}" ></follow-area>
+</view> 
+
+<view class="post-area">
+  <area-header title="{{isUser ? '我的帖子':'TA的帖子'}}"  showRight="{{false}}"></area-header>
+<view wx:if="{{userPostList.length > 0 }}">
   <block wx:for="{{userPostList}}" wx:key="postsId" >
     <post-item item="{{item}}" userInfo="{{userInfo}}"></post-item>
-    <van-divider />
   </block>
 </view>
-  <view wx:else class="empty-list">
+  <view wx:if="{{userPostList.length == 0}}" class="empty-list">
     <van-empty description="该用户很懒，还没有帖子">
     </van-empty>
   </view>
+</view>
+
 </view>

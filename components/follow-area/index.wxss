@@ -1,0 +1,16 @@
+/* components/follow-area/index.wxss */
+.follow-area{
+  width: 100vw;
+  margin-left: -20rpx;
+  white-space: nowrap;
+}
+.follow-item{
+  display: inline-block;
+  width: 220rpx;
+  border-radius: 25rpx;
+  vertical-align: top;
+  margin-left: 20rpx;
+}
+.follow-item:last-child{
+  margin-right: 20rpx;
+}

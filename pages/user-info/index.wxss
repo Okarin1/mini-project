@@ -23,7 +23,7 @@
 
 .post-list{
   margin-top: -40rpx;
-  background-color: #fff;
+  background-color: #fafafa;
   min-height: 1000rpx;
   border-radius: 40rpx;
   z-index: 5;
@@ -70,4 +70,7 @@
 .gender-icon{
   width: 30rpx;
   height: 30rpx;
+}
+.follow-area{
+  margin-bottom: 30rpx;
 }

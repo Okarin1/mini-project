@@ -1,0 +1,9 @@
+<!--components/follow-area/index.wxml-->
+<area-header title="{{title}}" showRight="{{false}}"></area-header>
+<scroll-view scroll-x class="follow-area">
+  <block wx:for="{{followList}}" wx:key="id">
+    <view class="follow-item">
+    <follow-item item="{{item}}" bindtap="showPhoneDetail"  data-info="{{item}}"></follow-item>
+    </view>
+  </block>
+</scroll-view>
