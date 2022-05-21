@@ -11,6 +11,8 @@ const followStore = new EventStore({
       getFollowInfoById(id).then((res) => {
         if (res.spuInfo) {
           ctx.followList = res.spuInfo;
+        }else{
+          ctx.followList = [];
         }
       });
     },
