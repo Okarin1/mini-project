@@ -2,7 +2,7 @@
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view class="phone-detail">
   <view class="phone-info" wx:if="{{phoneInfo.id}}">
-    <image class="cover" wx:if="{{decript}}" src="{{decript}}"></image>
+    <image class="cover"  wx:if="{{decript}}" src="{{decript}}"></image>
     <view class="phone-title">
       <view class="name">{{phoneInfo.spuName}}</view>
       <view class="info"><text>{{commentNum}} 讨论</text>
@@ -12,7 +12,7 @@
   </view>
 
   <view class="phone-plus">
-    <van-tabs color="#007acc" active="{{ active }}" bind:change="onChange">
+    <van-tabs color="#007acc" active="{{ active }}">
       <van-tab title="参数">
         <view class="phone-param" wx:if="{{phoneParam.length != 0}}">
           <van-cell-group>

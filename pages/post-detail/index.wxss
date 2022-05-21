@@ -43,3 +43,6 @@
 .comment-list{
   margin-bottom: 80rpx;
 }
+.image-content{
+  margin-top: 20rpx;
+}

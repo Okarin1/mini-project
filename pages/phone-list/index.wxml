@@ -6,5 +6,4 @@
     <phone-list-item item="{{item}}" bindtap="showPhoneDetail" data-info="{{item}}"></phone-list-item>
   </block>
   </view>
-
 </view>
