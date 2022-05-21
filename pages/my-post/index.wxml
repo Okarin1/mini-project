@@ -3,7 +3,7 @@
   <area-header title="我的帖子" showRight="{{false}}"></area-header>
   <view class="post-list" wx:if="{{myPostList.length != 0}}">
     <block wx:for="{{myPostList}}" wx:key="postsId">
-      <post-item isMyPage item="{{item}}" bind:deleteClick="deletePost" data-postid="{{item.postsId}}"></post-item>
+      <post-item isMyPage item="{{item}}" userInfo="{{userInfo}}" bind:deleteClick="deletePost" data-postid="{{item.postsId}}"></post-item>
       <hr />
     </block>
   </view>
