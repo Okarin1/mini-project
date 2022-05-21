@@ -4,7 +4,7 @@ import { queryRect } from "../../utils/helper";
 import { userStore } from "../../store/index";
 Page({
   data: {
-    banners: [],
+    banners: {},
     recommendPostList: [],
     swiperHeight: 0,
     hasMore: true,
@@ -57,7 +57,21 @@ Page({
       console.log(error);
     }
   },
-
+  //banner点击
+  bannerClick(event){
+    let {id} = event.currentTarget.dataset
+    if(id.postsId){
+      let {postsId} = id
+      wx.navigateTo({
+        url: '/pages/post-detail/index?postsId=' + postsId
+      })
+    }else if(id.phoneId){
+      let { phoneId, spuName } = id;
+      wx.navigateTo({
+        url: `/pages/phone-detail/index?id=${phoneId}&spuName=${spuName}`,
+      });
+    }
+  },
   getUserHandler(res) {
     this.setData({
       userInfo: res,

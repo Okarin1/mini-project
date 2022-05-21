@@ -15,7 +15,7 @@
 <swiper class="swiper" indicator-dots autoplay interval="2000" circular style="height: {{swiperHeight}}px;">
   <block wx:for="{{banners}}" wx:key="bannerId">
     <swiper-item class="swiper-item">
-      <image class="swiper-image" src="{{item}}" mode="widthFix" bindload="handleSwiperImageLoad"></image>
+      <image class="swiper-image" src="{{item.src}}" mode="widthFix" bindload="handleSwiperImageLoad" bindtap="bannerClick" data-id="{{item}}"></image>
     </swiper-item>
   </block>
 </swiper>
