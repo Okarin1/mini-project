@@ -32,18 +32,25 @@
 
 .text-content{
   display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
-  padding: 20rpx 10rpx;
+  padding: 10rpx 10rpx 20rpx 10rpx;
   text-align:justify;
   font-size: 30rpx;
   overflow: hidden;
-  max-height: 100rpx;
+  max-height: 120rpx;
   text-overflow: ellipsis;  /* 超出部分省略号 */
   word-break: break-word;  /* break-all(允许在单词内换行。) */		
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-  -webkit-line-clamp: 3; /** 显示的行数 **/
+  -webkit-line-clamp:3; /** 显示的行数 **/
+}
+
+.title{
+  padding: 10rpx 10rpx;
+  font-weight: bold;
+  font-size: 32rpx;
 }
 .image-content{
   overflow: hidden;
+  margin-top: 20rpx;
 }
 
 

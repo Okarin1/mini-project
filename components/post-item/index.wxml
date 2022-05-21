@@ -8,6 +8,7 @@
       <view class="post-time">{{format.completeTime(item.createDate)}}</view>
     </view>
   </view>
+  <view class="title" wx:if="{{item.title}}"><text user-select>{{item.title}}</text></view>
   <view class="text-content">
     <view class="post"><text user-select>{{item.article}}</text></view>
   </view>
