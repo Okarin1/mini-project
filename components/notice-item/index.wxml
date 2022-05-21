@@ -7,6 +7,7 @@
   <view class="notice-info">
     <view class="user-name" catchtap="handleUserClick">{{item.nickname}}</view>
     <view class="post-time">{{format.completeTime(item.createDate)}}</view>
-    <view class="nocice-content">回复了你的帖子：<text>{{item.userComment}}</text></view>
+    <view class="nocice-content" wx:if="{{item.typee == '评论'}}">回复了你的帖子：<text wx:if="{{item.userComment}}">{{item.userComment}}</text></view>
+    <view class="nocice-content" wx:if="{{item.typee == '点赞'}}">点赞了你的帖子</view>
   </view>
 </view>
