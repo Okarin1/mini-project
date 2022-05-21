@@ -1,8 +1,8 @@
 <!--pages/home-phone/index.wxml-->
 
-<area-header title="今日热门" ></area-header>
+<area-header title="今日热门"  bind:click="showMoreRanking"></area-header>
 <view class="ranking">
-  <block wx:for="{{ranking}}"  showRight="{{false}}" wx:key="spuId">
+  <block wx:for="{{ranking}}"  wx:if="{{index < 5}}" wx:key="spuId">
     <view class="ranking-item">
       <ranking-item item="{{item}}" index="{{index+1}}" bindtap="showPhoneDetail" data-info="{{item}}"></ranking-item>
     </view>

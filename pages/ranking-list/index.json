@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "area-header":"../../components/area-header/index",
+    "ranking-item":"../../components/ranking-item"
+  }
+}

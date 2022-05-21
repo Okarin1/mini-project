@@ -43,7 +43,7 @@ Page({
   onLoad(options) {
     getRankingList().then((res) => {
       this.setData({
-        ranking: res.rankinglist.slice(0, 5),
+        ranking: res.rankinglist,
       });
     });
     brandStore.dispatch("getPhoneDataAction");
@@ -51,9 +51,13 @@ Page({
     brandStore.onState("iphoneList", this.getListHandler(2));
     brandStore.onState("xiaomiList", this.getListHandler(3));
     userStore.onState("userInfo", this.getUserHandler);
+    followStore.onState("followList", this.getFollowList);
+  },
+
+  onShow() {
     let { id } = this.data.userInfo;
     if (id) {
-      followStore.onState("followList", this.getFollowList);
+      followStore.dispatch("getFollowDataAction", id);
     }
   },
 
@@ -82,7 +86,7 @@ Page({
 
   getFollowList(res) {
     this.setData({
-      followList: res.slice(0, 4),
+      followList: res.slice(0, 4)
     });
   },
 
@@ -101,6 +105,14 @@ Page({
   navigateToDetailPhonesPage(brandName, title) {
     wx.navigateTo({
       url: `/pages/phone-list/index?brandName=${brandName}&title=${title}`,
+    });
+  },
+
+  //展示更多热门
+  showMoreRanking(){
+    let ranking = JSON.stringify(this.data.ranking)
+    wx.navigateTo({
+      url: `/pages/ranking-list/index?ranking=${ranking}`,
     });
   },
 
