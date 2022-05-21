@@ -1,6 +1,6 @@
 // pages/home-remind/index.js;
 import { userStore, noticeStore } from "../../store/index";
-import { deleteThumbsNoticeById } from "../../service/api_user";
+import { deleteThumbsNoticeById,deleteCommentNoticeById } from "../../service/api_user";
 Page({
   /**
    * 页面的初始数据
@@ -9,6 +9,9 @@ Page({
     userInfo: {},
     commentNoticeList: [],
     thumbsNoticeList: [],
+    active: 0,
+    thumbsDot: false,
+    commentDot: false,
   },
 
   /**
@@ -36,21 +39,50 @@ Page({
     this.setData({
       thumbsNoticeList: res,
     });
+    if (res.length != 0) {
+      this.setData({
+        thumbsDot:true
+      });
+    }else{
+      this.setData({
+        thumbsDot:false
+      });
+    }
   },
   getCommentNoticeList(res) {
     this.setData({
       commentNoticeList: res,
     });
-  },
-
-  deleteNotice() {
-    let { id, username } = this.data.userInfo;
-    if (id && username) {
-      deleteThumbsNoticeById(id).then((res) => {
-       if(res.msg == "success"){
-        noticeStore.dispatch("getNoticeDataAction", id, username);
-       }
+    if (res.length != 0) {
+      this.setData({
+        commentDot:true
       });
+    }else{
+      this.setData({
+        commentDot:false
+      });
+    }
+  },
+  tabChange(event) {
+    let index = event.detail.name;
+    if (index == 1) {
+      let { id, username } = this.data.userInfo;
+      if (id && username) {
+        deleteThumbsNoticeById(id).then((res) => {
+          if (res.msg == "success") {
+            noticeStore.dispatch("getNoticeDataAction", id, username);
+          }
+        });
+      }
+    }else if(index == 0){
+      let { id, username } = this.data.userInfo;
+      if (id && username) {
+        deleteCommentNoticeById(id).then((res) => {
+          if (res.msg == "success") {
+            noticeStore.dispatch("getNoticeDataAction", id, username);
+          }
+        });
+      }
     }
   },
 
