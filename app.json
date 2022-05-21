@@ -15,7 +15,8 @@
     "pages/phone-list/index",
     "pages/register/index",
     "pages/my-follow/index",
-    "pages/search-detail/index"
+    "pages/search-detail/index",
+    "pages/ranking-list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
