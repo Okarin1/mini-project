@@ -36,7 +36,7 @@
   text-align:justify;
   font-size: 30rpx;
   overflow: hidden;
-  max-height: 120rpx;
+  max-height: 105rpx;
   text-overflow: ellipsis;  /* 超出部分省略号 */
   word-break: break-word;  /* break-all(允许在单词内换行。) */		
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/

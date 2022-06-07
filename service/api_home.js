@@ -1,7 +1,7 @@
 import myRequest from "index";
 
 const banner = [
-  { postsId: 105, src: "https://s1.ax1x.com/2022/05/11/OUcAL4.png" },
+  { postsId: 114, src: "https://s1.ax1x.com/2022/05/11/OUcAL4.png" },
   { phoneId: 8, spuName:"Redmi K50",src: "https://s1.ax1x.com/2022/05/21/OvJQOI.png" },
   { phoneId: 29, spuName:"魅族 18X",src: "https://s1.ax1x.com/2022/05/21/OvJJk8.png" },
   { phoneId: 14, spuName:"Mate Xs 2",src: "https://s1.ax1x.com/2022/05/21/OvYF3Q.png" },
